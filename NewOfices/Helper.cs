@@ -282,6 +282,7 @@ namespace salary3Offices///////////////////////////Some
 				if (smtp != null)
 				{
                     smtp.ClientCertificates.Clear();
+                    smtp.UseDefaultCredentials = true;
                     smtp.Dispose();
                 }
 			}
