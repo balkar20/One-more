@@ -7,7 +7,12 @@ using System.Net;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using SalaryReport;
-
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.RightsManagement;
+using System.Xml.Serialization;
+using SalaryReport.Save;
 
 namespace salary3Offices////////////////////////some
 {
@@ -17,21 +22,14 @@ namespace salary3Offices////////////////////////some
 	public partial class MainWindow : Window
 	{
         public static int port = 0;
-        string sendSite; 
-
-		public MainWindow()
+        string sendSite;
+	    string pathToXml = Path.Combine(Directory.GetCurrentDirectory(), "data.xml");
+        public MainWindow()
 		{
 			InitializeComponent();
             btnUpdate.Click += BtnUpdate_Click;
-            
-            //if(rbtnAtezio.IsChecked == true)
-            //{
-            //    txbxLogin.IsEnabled = false;
-            //    txbxPasssword.IsEnabled = false;
-            //}
-
-            
-            
+		    
+            RestoreFromXml(pathToXml);
 		}
         private void CopyFilesInDirectory()
         {
@@ -51,36 +49,35 @@ namespace salary3Offices////////////////////////some
             }
         }
 
-        private void Txbx_DateAvans_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textbox = (TextBox)sender;
+        //private void Txbx_DateAvans_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    TextBox textbox = (TextBox)sender;
 
-            Regex rgx = new Regex(Helper.patternDate);
+        //    Regex rgx = new Regex(Helper.patternDate);
 
-            if (textbox.Text != "")
-            {
-                if (!rgx.IsMatch(textbox.Text))
-                {
-                    MessageBox.Show("Дата должна быть введена в формате : 25.03.2017 !!!");
-                }
-                //else if(textbox.Name == txbx_DateAvans.Name)
-                //{
-                //    txbxCurrency.IsEnabled = true;
-                //}
-                //else if (textbox.Name == txbxDateZP.Name)
-                //{
-                //    txbxCurrencyZP.IsEnabled = true;
-                //}
-                //else if (textbox.Name == txbxDateHolliday.Name)
-                //{
-                //    txbxCurrencyHolliday.IsEnabled = true;
-                //}
-            }
-        }
+        //    if (textbox.Text != "")
+        //    {
+        //        if (!rgx.IsMatch(textbox.Text))
+        //        {
+        //            MessageBox.Show("Дата должна быть введена в формате : 25.03.2017 !!!");
+        //        }
+        //        //else if(textbox.Name == txbx_DateAvans.Name)
+        //        //{
+        //        //    txbxCurrency.IsEnabled = true;
+        //        //}
+        //        //else if (textbox.Name == txbxDateZP.Name)
+        //        //{
+        //        //    txbxCurrencyZP.IsEnabled = true;
+        //        //}
+        //        //else if (textbox.Name == txbxDateHolliday.Name)
+        //        //{
+        //        //    txbxCurrencyHolliday.IsEnabled = true;
+        //        //}
+        //    }
+        //}
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            //
             Helper.to.Clear();
             if (File.Exists(settingsFolder.Text))
             {
@@ -169,6 +166,7 @@ namespace salary3Offices////////////////////////some
 				EnableDisableControls(true);  
 			}
             CopyFilesInDirectory();
+            SaveToXml(pathToXml);
 		}
 
 		private void EnableDisableControls(bool isEnabled)
@@ -281,6 +279,69 @@ namespace salary3Offices////////////////////////some
             txbxPathToCopy.Text = dialog.SelectedPath;
         }
 
+	    void SaveToXml(string fileName)
+	    {
+            Datas datas = new Datas();
+	        datas.Currency = txbxCurrency.Text;
+	        datas.CurrencyHoliday = txbxCurrencyHolliday.Text;
+	        datas.CurrencyZP = txbxCurrencyZP.Text;
+	        datas.DateAvans = txbx_DateAvans.Text;
+	        datas.DateZp = txbxDateZP.Text;
+	        datas.DateHoliday = txbxDateHolliday.Text;
+	        datas.EmailText = emailText.Text;
+	        datas.FileFolder = fileFolder.Text;
+	        datas.Login = txbxLogin.Text;
+	        datas.Password = txbxPasssword.Text;
+	        datas.PathToCopy = txbxPathToCopy.Text;
+	        datas.SettingsFolder = settingsFolder.Text;
+
+            XmlSerializer xs = new XmlSerializer(typeof(Datas));
+	        try
+	        {
+	            using (var fs = new FileStream(fileName, FileMode.Create))
+	            {
+	                xs.Serialize(fs, datas);
+	            }
+            }
+	        catch(Exception e)
+	        {
+	            string mes = e.Message;
+	            //Logger.Out("Не сериализовалось(");
+	        }
+	        
+	    }
+
+	    void RestoreFromXml(string fileName)
+	    {
+	        Datas datas = new Datas();
+	        XmlSerializer xs = new XmlSerializer(typeof(Datas));
+	        try
+	        {
+	            using (var fs = new FileStream(fileName, FileMode.Open))
+	            {
+	                datas = (Datas)xs.Deserialize(fs);
+	            }
+            }
+	        catch (Exception e)
+	        {
+	            //Logger.Out("Не десериализовалось(");
+                return;
+	        }
+	        
+
+	        txbxCurrency.Text = datas.Currency;
+	        txbxCurrencyZP.Text = datas.CurrencyZP;
+	        txbxCurrencyHolliday.Text = datas.CurrencyHoliday;
+	        txbxDateHolliday.Text = datas.DateHoliday;
+	        txbxDateZP.Text = datas.DateZp;
+	        txbx_DateAvans.Text = datas.DateAvans;
+	        txbxLogin.Text = datas.Login;
+	        txbxPasssword.Text = datas.Password;
+	        txbxPathToCopy.Text = datas.PathToCopy;
+	        emailText.Text = datas.EmailText;
+	        settingsFolder.Text = datas.SettingsFolder;
+	        fileFolder.Text = datas.FileFolder;
+	    }
 
     }
 }

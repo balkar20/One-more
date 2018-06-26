@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Datas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Login>abalkarov</Login>
+  <Password>55555</Password>
+  <PathToCopy>type a folder</PathToCopy>
+  <Currency>2222</Currency>
+  <CurrencyZP>2222</CurrencyZP>
+  <CurrencyHoliday>2222</CurrencyHoliday>
+  <DateHoliday>02.03.2017</DateHoliday>
+  <DateZp>02.03.2017</DateZp>
+  <DateAvans>02.03.2017</DateAvans>
+  <FileFolder>type a file with lists</FileFolder>
+  <SettingsFolder>type a file with settings</SettingsFolder>
+  <EmailText />
+</Datas>
