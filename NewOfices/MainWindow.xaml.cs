@@ -52,33 +52,6 @@ namespace salary3Offices////////////////////////some
             }
         }
 
-        //private void Txbx_DateAvans_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    TextBox textbox = (TextBox)sender;
-
-        //    Regex rgx = new Regex(Helper.patternDate);
-
-        //    if (textbox.Text != "")
-        //    {
-        //        if (!rgx.IsMatch(textbox.Text))
-        //        {
-        //            MessageBox.Show("Дата должна быть введена в формате : 25.03.2017 !!!");
-        //        }
-        //        //else if(textbox.Name == txbx_DateAvans.Name)
-        //        //{
-        //        //    txbxCurrency.IsEnabled = true;
-        //        //}
-        //        //else if (textbox.Name == txbxDateZP.Name)
-        //        //{
-        //        //    txbxCurrencyZP.IsEnabled = true;
-        //        //}
-        //        //else if (textbox.Name == txbxDateHolliday.Name)
-        //        //{
-        //        //    txbxCurrencyHolliday.IsEnabled = true;
-        //        //}
-        //    }
-        //}
-
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Helper.to.Clear();
