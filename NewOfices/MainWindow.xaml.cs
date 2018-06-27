@@ -28,7 +28,10 @@ namespace salary3Offices////////////////////////some
 		{
 			InitializeComponent();
             btnUpdate.Click += BtnUpdate_Click;
-		    
+		    this.Closed += (sender, args) =>
+		    {
+                SaveToXml(pathToXml);
+		    };
             RestoreFromXml(pathToXml);
 		}
         private void CopyFilesInDirectory()
@@ -106,7 +109,8 @@ namespace salary3Offices////////////////////////some
                     return;
                 }
             }
-            
+
+		    string txtHolly = txbxDateHolliday.Text;
 
             if (port !=0 )
             {
@@ -141,8 +145,6 @@ namespace salary3Offices////////////////////////some
                 Helper.dateOfAvansString = txbx_DateAvans.Text;
             }
             
-
-            
             if (String.IsNullOrEmpty(settingsFolder.Text))
 			{
 				MessageBox.Show("Выберите файл с настройками");
@@ -166,7 +168,7 @@ namespace salary3Offices////////////////////////some
 				EnableDisableControls(true);  
 			}
             CopyFilesInDirectory();
-            SaveToXml(pathToXml);
+            //SaveToXml(pathToXml);
 		}
 
 		private void EnableDisableControls(bool isEnabled)

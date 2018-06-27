@@ -308,8 +308,9 @@ namespace salary3Offices///////////////////////////Some
 				{
 					smtphost = setting.Replace("SMTP:", string.Empty);
 				}
-				else 
+				else
 				{
+				    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+[@]+[a-zA-z0-9._])";
                     string pattern = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z]+\.[a-zA-Z]+@artezio.com)";
                     string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
                     string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
@@ -328,6 +329,8 @@ namespace salary3Offices///////////////////////////Some
                     MatchCollection matches3 = rgx3.Matches(setting);
                     Regex rgx4 = new Regex(pattern4, RegexOptions.IgnoreCase);
                     MatchCollection matches4 = rgx4.Matches(setting);
+				    Regex rgxFor2 = new Regex(patternForTwo, RegexOptions.IgnoreCase);
+                    MatchCollection matchesFor2 = rgxFor2.Matches(setting);
                     if (matches.Count > 0)
 					{
 						GroupCollection groups = matches[0].Groups;
