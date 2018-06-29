@@ -1,7 +1,13 @@
 ﻿<Window x:Class="salary3Offices.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=System"
         Title="Рассылка расчетных листков" Height="728.5" Width="987.394" ResizeMode="CanMinimize" >
+    <Window.Resources>
+        <componentModel:BackgroundWorker x:Key="backgroundWorker"></componentModel:BackgroundWorker>
+        <componentModel:BackgroundWorker x:Key="backgroundWorker2"></componentModel:BackgroundWorker>
+        <componentModel:BackgroundWorker x:Key="backgroundWorker3"></componentModel:BackgroundWorker>
+    </Window.Resources>
     <Grid Margin="0,0,4,0">
         <Grid VerticalAlignment="Top" Height="308" Margin="-10,5,10,0">
             <TextBlock HorizontalAlignment="Left" Foreground="OrangeRed" Margin="10,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="84" Width="737">

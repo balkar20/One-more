@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using Microsoft.Win32;
 using System.Net;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text.RegularExpressions;
 using SalaryReport;
 using System.IO;
@@ -12,6 +13,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.RightsManagement;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
+using System.Windows.Navigation;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -24,6 +28,9 @@ namespace salary3Offices////////////////////////some
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BackgroundWorker backgroundWorker;
+        private BackgroundWorker backgroundWorker2;
+        private BackgroundWorker backgroundWorker3;
         public static int port = 0;
         string sendSite;
         string pathToXml = Path.Combine(Directory.GetCurrentDirectory(), "data.xml");
@@ -31,14 +38,75 @@ namespace salary3Offices////////////////////////some
         public MainWindow()
         {
             InitializeComponent();
-            //btnUpdate.Click += BtnUpdate_Click;
-            //GetCurency(@"http://www.nbrb.by/Services/XmlExRates.aspx?ondate=02/06/2018");
+            backgroundWorker = ((BackgroundWorker) this.FindResource("backgroundWorker"));
+            backgroundWorker2 = ((BackgroundWorker)this.FindResource("backgroundWorker2"));
+            backgroundWorker3 = ((BackgroundWorker)this.FindResource("backgroundWorker3"));
+            backgroundWorker.DoWork += BackgroundWorkerOnDoWork;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorkerOnRunWorkerCompleted;
+            backgroundWorker2.DoWork += BackgroundWorkerOnDoWork;
+            backgroundWorker3.DoWork += BackgroundWorkerOnDoWork;
+            backgroundWorker2.RunWorkerCompleted += BackgroundWorkerOnRunWorkerCompleted;
+            backgroundWorker3.RunWorkerCompleted += BackgroundWorkerOnRunWorkerCompleted;
             this.Closed += (sender, args) =>
             {
                 SaveToXml(pathToXml);
             };
             RestoreFromXml(pathToXml);
         }
+
+        private void BackgroundWorkerOnRunWorkerCompleted(object o, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                // Ошибка была сгенерирована обработчиком события DoWork
+                MessageBox.Show(e.Error.Message, "Произошла ошибка");
+            }
+            else
+            {
+                SetCurencyInput result = (SetCurencyInput)e.Result;
+                if (result.Input == "txbxDateZP")
+                {
+                    txbxCurrencyZP.Text = result.Currency;
+                }
+                else if (result.Input == "txbxDateHolliday")
+                {
+                    txbxCurrencyHolliday.Text = result.Currency;
+                }
+                else if (result.Input == "txbx_DateAvans")
+                {
+                    txbxCurrency.Text = result.Currency;
+                }
+            }
+        }
+
+        private void BackgroundWorkerOnDoWork(object o, DoWorkEventArgs doWorkEventArgs)
+        {
+            SetCurencyInput oldinput = (SetCurencyInput) doWorkEventArgs.Argument;
+
+            //SetCurencyInput curency = new SetCurencyInput(oldinput.Input,oldinput.Date);
+            oldinput.Currency = GetCurency(currencyUrl + oldinput.Currency);
+            doWorkEventArgs.Result = oldinput;
+
+            //DatePicker picker = ((DatePicker)sender);
+            //string text = picker.Text;
+            //string date = Convert.ToDateTime(text).ToString("MM/dd/yyyy");
+            //StringBuilder bulder = new StringBuilder(date);
+            //string result = bulder.Replace(".", "/").ToString();
+            //Task<string> task = Task<string>.Factory.StartNew(() => GetCurency(currencyUrl + result));
+            //if (picker.Name == "txbxDateZP")
+            //{
+            //    //txbxCurrencyZP.Text = ;
+            //}
+            //else if (picker.Name == "txbxDateHolliday")
+            //{
+            //    txbxCurrencyHolliday.Text = task.Result;
+            //}
+            //else if (picker.Name == "txbx_DateAvans")
+            //{
+            //    txbxCurrency.Text = task.Result;
+            //}
+        }
+
         private void CopyFilesInDirectory()
         {
             string pathFrom = Environment.CurrentDirectory + @"\..\..\Sent";
@@ -317,6 +385,7 @@ namespace salary3Offices////////////////////////some
         {
             string cur = null;
             Servicer servicer = new Servicer();
+            //Task<XmlDocument> task = new Task<XmlDocument>();
             XmlDocument doc = servicer.GetXmlCurencyData(url);
             XmlParser parser = new XmlParser();
             if (doc != null)
@@ -327,31 +396,29 @@ namespace salary3Offices////////////////////////some
             return cur;
         }
 
-        //private void SetCurrency(object sender, EventArgs e)
-        //{
-
-
-        //}
-
-        private void SetCurrency(object sender, RoutedEventArgs e)
+        private  void SetCurrency(object sender, RoutedEventArgs e)
         {
             DatePicker picker = ((DatePicker)sender);
+            string name = picker.Name;
             string text = picker.Text;
             string date = Convert.ToDateTime(text).ToString("MM/dd/yyyy");
             StringBuilder bulder = new StringBuilder(date);
             string result = bulder.Replace(".", "/").ToString();
-            if (picker.Name == "txbxDateZP")
+            if (!backgroundWorker.IsBusy)
             {
-                txbxCurrencyZP.Text = GetCurency(currencyUrl + result);
+                backgroundWorker.RunWorkerAsync(new SetCurencyInput(name, result));
             }
-            else if (picker.Name == "txbxDateHolliday")
+            else if (!backgroundWorker2.IsBusy)
             {
-                txbxCurrencyHolliday.Text = GetCurency(currencyUrl + result);
+                backgroundWorker2.RunWorkerAsync(new SetCurencyInput(name, result));
             }
-            else if (picker.Name == "txbx_DateAvans")
+            else if(!backgroundWorker3.IsBusy)
             {
-                txbxCurrency.Text = GetCurency(currencyUrl + result);
+                backgroundWorker3.RunWorkerAsync(new SetCurencyInput(name, result));
             }
+
+            
+            
         }
 
 
