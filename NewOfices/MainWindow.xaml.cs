@@ -21,11 +21,8 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using SalaryReport.Save;
 
-namespace salary3Offices////////////////////////some
+namespace salary3Offices
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private BackgroundWorker backgroundWorker;
@@ -35,10 +32,11 @@ namespace salary3Offices////////////////////////some
         string sendSite;
         string pathToXml = Path.Combine(Directory.GetCurrentDirectory(), "data.xml");
         private string currencyUrl = @"http://www.nbrb.by/Services/XmlExRates.aspx?ondate=";
+
         public MainWindow()
         {
             InitializeComponent();
-            backgroundWorker = ((BackgroundWorker) this.FindResource("backgroundWorker"));
+            backgroundWorker = ((BackgroundWorker)this.FindResource("backgroundWorker"));
             backgroundWorker2 = ((BackgroundWorker)this.FindResource("backgroundWorker2"));
             backgroundWorker3 = ((BackgroundWorker)this.FindResource("backgroundWorker3"));
             backgroundWorker.DoWork += BackgroundWorkerOnDoWork;
@@ -58,7 +56,6 @@ namespace salary3Offices////////////////////////some
         {
             if (e.Error != null)
             {
-                // Ошибка была сгенерирована обработчиком события DoWork
                 MessageBox.Show(e.Error.Message, "Произошла ошибка");
             }
             else
@@ -81,30 +78,9 @@ namespace salary3Offices////////////////////////some
 
         private void BackgroundWorkerOnDoWork(object o, DoWorkEventArgs doWorkEventArgs)
         {
-            SetCurencyInput oldinput = (SetCurencyInput) doWorkEventArgs.Argument;
-
-            //SetCurencyInput curency = new SetCurencyInput(oldinput.Input,oldinput.Date);
+            SetCurencyInput oldinput = (SetCurencyInput)doWorkEventArgs.Argument;
             oldinput.Currency = GetCurency(currencyUrl + oldinput.Currency);
             doWorkEventArgs.Result = oldinput;
-
-            //DatePicker picker = ((DatePicker)sender);
-            //string text = picker.Text;
-            //string date = Convert.ToDateTime(text).ToString("MM/dd/yyyy");
-            //StringBuilder bulder = new StringBuilder(date);
-            //string result = bulder.Replace(".", "/").ToString();
-            //Task<string> task = Task<string>.Factory.StartNew(() => GetCurency(currencyUrl + result));
-            //if (picker.Name == "txbxDateZP")
-            //{
-            //    //txbxCurrencyZP.Text = ;
-            //}
-            //else if (picker.Name == "txbxDateHolliday")
-            //{
-            //    txbxCurrencyHolliday.Text = task.Result;
-            //}
-            //else if (picker.Name == "txbx_DateAvans")
-            //{
-            //    txbxCurrency.Text = task.Result;
-            //}
         }
 
         private void CopyFilesInDirectory()
@@ -122,16 +98,6 @@ namespace salary3Offices////////////////////////some
             foreach (var item in sourse.GetFiles())
             {
                 item.Delete();
-            }
-        }
-
-        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            Helper.to.Clear();
-            if (File.Exists(settingsFolder.Text))
-            {
-                Helper.ReadSettings(settingsFolder.Text);
-                logs.Text = "Обновлено!! Настройки: от " + Helper.from + " подпись " + Helper.fromsign + "\n для " + Helper.to.Count + " сотрудников.";
             }
         }
 
@@ -204,7 +170,6 @@ namespace salary3Offices////////////////////////some
                 EnableDisableControls(true);
             }
             CopyFilesInDirectory();
-            //SaveToXml(pathToXml);
         }
 
         private void EnableDisableControls(bool isEnabled)
@@ -228,38 +193,6 @@ namespace salary3Offices////////////////////////some
             settingsFolder.Text = openFileDialog.FileName;
         }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox textbox = (TextBox)sender;
-
-            Regex rgx = new Regex(Helper.patternDate);
-
-            if (textbox.Text != "")
-            {
-                if (!rgx.IsMatch(textbox.Text))
-                {
-                    MessageBox.Show("Дата должна быть введена в формате : 25.03.2017 !!!");
-                }
-            }
-        }
-
-        private void textBoxDates_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox textbox = (TextBox)sender;
-
-            Regex rgx = new Regex(Helper.patternDate);
-
-            if (textbox.Text != "")
-            {
-                if (!rgx.IsMatch(textbox.Text))
-                {
-                    MessageBox.Show("Дата должна быть введена в формате : 25.03.2017 !!!");
-                }
-            }
-
-        }
-
-
         private void textBox1_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             if (File.Exists(settingsFolder.Text))
@@ -278,18 +211,6 @@ namespace salary3Offices////////////////////////some
         {
 
             RadioButton presed = (RadioButton)sender;
-
-            //if(presed.Name != "rbtnAtezio")
-            //{
-            //    txbxLogin.IsEnabled = true;
-            //    txbxPasssword.IsEnabled = true;
-            //}
-            //else
-            //{
-            //    txbxLogin.IsEnabled = false;
-            //    txbxPasssword.IsEnabled = false;
-            //}
-
             sendSite = presed.Content.ToString();
             if (sendSite == "gmail.com (smtp.gmail.com)")
             {
@@ -344,7 +265,7 @@ namespace salary3Offices////////////////////////some
             catch (Exception e)
             {
                 string mes = e.Message;
-                //Logger.Out("Не сериализовалось(");
+                Logger.Out(String.Format("Не сериализовалось("));
             }
 
         }
@@ -362,7 +283,7 @@ namespace salary3Offices////////////////////////some
             }
             catch (Exception e)
             {
-                //Logger.Out("Не десериализовалось(");
+                Logger.Out(String.Format("Не десериализовалось("));
                 return;
             }
 
@@ -385,18 +306,16 @@ namespace salary3Offices////////////////////////some
         {
             string cur = null;
             Servicer servicer = new Servicer();
-            //Task<XmlDocument> task = new Task<XmlDocument>();
             XmlDocument doc = servicer.GetXmlCurencyData(url);
             XmlParser parser = new XmlParser();
             if (doc != null)
             {
                 cur = parser.GetCurrency(doc);
             }
-
             return cur;
         }
 
-        private  void SetCurrency(object sender, RoutedEventArgs e)
+        private void SetCurrency(object sender, RoutedEventArgs e)
         {
             DatePicker picker = ((DatePicker)sender);
             string name = picker.Name;
@@ -412,19 +331,15 @@ namespace salary3Offices////////////////////////some
             {
                 backgroundWorker2.RunWorkerAsync(new SetCurencyInput(name, result));
             }
-            else if(!backgroundWorker3.IsBusy)
+            else if (!backgroundWorker3.IsBusy)
             {
                 backgroundWorker3.RunWorkerAsync(new SetCurencyInput(name, result));
             }
-
-            
-            
         }
-
 
         private void BtnClear_OnClick(object sender, RoutedEventArgs e)
         {
-            Button but = (Button) sender;
+            Button but = (Button)sender;
             string btnName = but.Name;
             if (btnName == "btnClearAvans")
             {
