@@ -65,5 +65,6 @@ SMTP:SMTP.ARTGROUP.local
 Торпачёва Евгения Александровна:evamoonlight@mail.ru
 Тапстов Александр Олегович:Aleksandr.Tapstov@artezio.com
 Фельдман Владимир Леонидович:volfelmog@gmail.com
-Якушева Виктория Геннадьевна:Victoria.Yakusheva@artezio.com			
+Якушева Виктория Геннадьевна:Victoria.Yakusheva@artezio.com
+Пядус Виталий Михайлович:Vitaly.Pyadus@artezio.com			
 			

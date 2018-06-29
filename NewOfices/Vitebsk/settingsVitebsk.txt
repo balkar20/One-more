@@ -27,6 +27,7 @@ SMTP:SMTP.ARTGROUP.local
 Колесник Максим Сергеевич:Maksim.Kalesnik@artezio.com
 Крапивной Александр Евгеньевич:Alexander.Krapivnoj@artezio.com
 Кулешов Игорь Александрович:Igor.Kuleshov@artezio.com
+Лапковский Кирилл Игоревич:Kirill.Lapkovskiy@artezio.com
 Лесовикова Анна Александровна:Anna.Lesovikova@artezio.com
 Либартович Константин Евгеньевич:Kanstantsin.Libartovich@artezio.com
 Литовка Ольга Александровна:Volha.Litovka@artezio.com
@@ -61,6 +62,7 @@ SMTP:SMTP.ARTGROUP.local
 Зайцев Руслан Игоревич:Ruslan.Zaytsev@artezio.com
 Збуржинский Владимир Витальевич:Vladimir.Zburzhynski@artezio.com
 Замкович Евгения Юрьевна:Nikolai.Dokutovich@artezio.com
+Зинченко Александр Александрович:Aliaksandr.Zinchanka@artezio.com
 Подвигина Любовь Юрьевна:Nikolai.Dokutovich@artezio.com
 Глушнёнок Александр Сергеевич:Alexander.Hlushnionak@artezio.com
 Гончарова Татьяна Михайловна:Tatsiana.Goncharova@artezio.com
