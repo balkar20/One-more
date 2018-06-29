@@ -10,18 +10,18 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.ObjectModel;
 
 
-namespace salary3Offices///////////////////////////Some
+namespace salary3Offices
 {
-	class Helper
-	{
-		public static string from = string.Empty;
-		public static string fromsign = string.Empty;
-		public static string smtphost = string.Empty;
-		public static Dictionary<string, string> to = new Dictionary<string, string>();
-		public static int i = 0;
-        //
+    class Helper
+    {
+        public static string from = string.Empty;
+        public static string fromsign = string.Empty;
+        public static string smtphost = string.Empty;
+        public static Dictionary<string, string> to = new Dictionary<string, string>();
+        public static int i = 0;
+
         public static NetworkCredential login;
-        public static int port=0;
+        public static int port = 0;
 
         public static string currency = "";
         public static string currencyZP = "";
@@ -32,18 +32,18 @@ namespace salary3Offices///////////////////////////Some
         public static string dateOfHollydayString = "";
 
 
-        public static DateTime curentDate =DateTime.Now;
+        public static DateTime curentDate = DateTime.Now;
 
         static int cy = curentDate.Year;
         static int cm = curentDate.Month;
         static int cd = curentDate.Day;
 
-        static int cmAvanse = cm - 1 > 0 ? cm-1 : 12;
-        static int cyAvance = cmAvanse != 12 ? cy : cy - 1; 
-        
+        static int cmAvanse = cm - 1 > 0 ? cm - 1 : 12;
+        static int cyAvance = cmAvanse != 12 ? cy : cy - 1;
 
-        public static DateTime dateAvance = new DateTime(cyAvance,cmAvanse,25);
-        public static DateTime dateZP = new DateTime(cy,cm,10);
+
+        public static DateTime dateAvance = new DateTime(cyAvance, cmAvanse, 25);
+        public static DateTime dateZP = new DateTime(cy, cm, 10);
 
         public static ObservableCollection<string> dates = new ObservableCollection<string> { dateOfZpString };
 
@@ -58,81 +58,81 @@ namespace salary3Offices///////////////////////////Some
 
 
         private static Excel.Application xlApp;
-		private static Excel.Workbook xlWorkBook;
-		private static Excel.Worksheet xlWorkSheet;
-		private static object misValue = System.Reflection.Missing.Value;
-		private static Excel.Application xlAppNew;
-		private static Excel.Workbook xlWorkBookNew;
-		private static Excel.Worksheet xlWorkSheetNew;
+        private static Excel.Workbook xlWorkBook;
+        private static Excel.Worksheet xlWorkSheet;
+        private static object misValue = System.Reflection.Missing.Value;
+        private static Excel.Application xlAppNew;
+        private static Excel.Workbook xlWorkBookNew;
+        private static Excel.Worksheet xlWorkSheetNew;
 
-		public static string sent = "\\Sent\\";
+        public static string sent = "\\Sent\\";
 
-		public static string ConvertXslToCsv(string settingfile, string receiptFile, string emailtext)
-		{
-			string folder = Path.GetDirectoryName(receiptFile);
-			
-			xlApp = new Microsoft.Office.Interop.Excel.Application();
-			xlWorkBook = xlApp.Workbooks.Open(receiptFile, 0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-			xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+        public static string ConvertXslToCsv(string settingfile, string receiptFile, string emailtext)
+        {
+            string folder = Path.GetDirectoryName(receiptFile);
 
-			string end = string.Empty;
-			if (xlWorkSheet != null)
-			{
+            xlApp = new Microsoft.Office.Interop.Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Open(receiptFile, 0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
-				int rowStart = 0;
-				int rowEnd = 0;
-				int pos = 0;
+            string end = string.Empty;
+            if (xlWorkSheet != null)
+            {
+
+                int rowStart = 0;
+                int rowEnd = 0;
+                int pos = 0;
 
 
 
-				Excel.Range last = xlWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
-				Excel.Range excelCell = xlWorkSheet.get_Range("A1", last);
-				var cellValue = (Object[,])excelCell.Value;
-				string rstart = string.Empty;
-				string rend = string.Empty;
+                Excel.Range last = xlWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
+                Excel.Range excelCell = xlWorkSheet.get_Range("A1", last);
+                var cellValue = (Object[,])excelCell.Value;
+                string rstart = string.Empty;
+                string rend = string.Empty;
 
-				foreach (object s in (Array)cellValue)
-				{
-					pos++;
-					if (s != null && s.ToString().Contains("Расчетный листок"))
-					{
-						if (rowStart == 0)
-						{
-							rowStart = 1 + pos / 5;
-						}
-						else
-						{
-							rowEnd = pos / 5;
+                foreach (object s in (Array)cellValue)
+                {
+                    pos++;
+                    if (s != null && s.ToString().Contains("Расчетный листок"))
+                    {
+                        if (rowStart == 0)
+                        {
+                            rowStart = 1 + pos / 5;
+                        }
+                        else
+                        {
+                            rowEnd = pos / 5;
 
-							rstart = "A" + rowStart;
-							rend = "E" + rowEnd;
+                            rstart = "A" + rowStart;
+                            rend = "E" + rowEnd;
 
-							CopyRange(rstart, rend, rowStart, rowEnd, folder, emailtext);
+                            CopyRange(rstart, rend, rowStart, rowEnd, folder, emailtext);
 
-							rowStart = rowEnd + 1;
-						}
-					}
-				}
-				CopyRange("A" + (rowEnd + 1), "E" + excelCell.Rows.Count + 1, rowEnd, excelCell.Rows.Count, folder,  emailtext);
-			}
-			xlWorkBook.Close();
-			return Logger.Save(folder);
+                            rowStart = rowEnd + 1;
+                        }
+                    }
+                }
+                CopyRange("A" + (rowEnd + 1), "E" + excelCell.Rows.Count + 1, rowEnd, excelCell.Rows.Count, folder, emailtext);
+            }
+            xlWorkBook.Close();
+            return Logger.Save(folder);
 
-		}
+        }
 
-		private static void CopyRange(string rstart, string rend, int rowStart, int rowEnd, string folder, string emailtext)
-		{
-			xlAppNew = new Excel.Application();
-			xlWorkBookNew = xlApp.Workbooks.Add(misValue);
-			xlWorkSheetNew = (Excel.Worksheet)xlWorkBookNew.Worksheets.get_Item(1);
-			Excel.Range excelCellFrom = (Excel.Range)xlWorkSheet.get_Range(rstart, rend);
-			Excel.Range excelCellNew = (Excel.Range)xlWorkSheetNew.get_Range("A1", "E" + (rowEnd - rowStart));
-			excelCellFrom.Copy(misValue);
+        private static void CopyRange(string rstart, string rend, int rowStart, int rowEnd, string folder, string emailtext)
+        {
+            xlAppNew = new Excel.Application();
+            xlWorkBookNew = xlApp.Workbooks.Add(misValue);
+            xlWorkSheetNew = (Excel.Worksheet)xlWorkBookNew.Worksheets.get_Item(1);
+            Excel.Range excelCellFrom = (Excel.Range)xlWorkSheet.get_Range(rstart, rend);
+            Excel.Range excelCellNew = (Excel.Range)xlWorkSheetNew.get_Range("A1", "E" + (rowEnd - rowStart));
+            excelCellFrom.Copy(misValue);
 
-			excelCellNew.PasteSpecial(Excel.XlPasteType.xlPasteColumnWidths,
-									  Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
-			excelCellNew.PasteSpecial(Excel.XlPasteType.xlPasteAllUsingSourceTheme,
-									  Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
+            excelCellNew.PasteSpecial(Excel.XlPasteType.xlPasteColumnWidths,
+                                      Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
+            excelCellNew.PasteSpecial(Excel.XlPasteType.xlPasteAllUsingSourceTheme,
+                                      Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone, false, false);
             string emplNameVega;
             string emplPeriosVega;
 
@@ -142,7 +142,7 @@ namespace salary3Offices///////////////////////////Some
             Regex rgx = new Regex(vegaNamePattern);
             Regex rgx2 = new Regex(vegaPeriosPattern);
 
-            
+
 
             //Находит ФИО 
             var emplname = (string)(excelCellNew.Cells[3, 2] as Excel.Range).Value;
@@ -155,7 +155,7 @@ namespace salary3Offices///////////////////////////Some
                 emplNameVega = (string)(excelCellNew.Cells[2, 1] as Excel.Range).Value;
                 emplPeriosVega = (string)(excelCellNew.Cells[1, 1] as Excel.Range).Value;
 
-                string newName = rgx.Replace(emplNameVega,"");
+                string newName = rgx.Replace(emplNameVega, "");
                 string newPerios = rgx2.Replace(emplPeriosVega, "");
 
                 //Находит ФИО 
@@ -164,24 +164,24 @@ namespace salary3Offices///////////////////////////Some
                 //Находит Период
                 emplperios = newPerios;
             }
-            
-            
-            
 
-			bool folderExists = Directory.Exists(folder + sent);
-			if (!folderExists)
-				Directory.CreateDirectory(folder + sent);
+
+
+
+            bool folderExists = Directory.Exists(folder + sent);
+            if (!folderExists)
+                Directory.CreateDirectory(folder + sent);
 
             //Указываем имя файла который будет отправлен
-			string fileToSent =
-				new StringBuilder(folder).Append(sent).Append(emplname).Append(".xls").ToString();
+            string fileToSent =
+                new StringBuilder(folder).Append(sent).Append(emplname).Append(".xls").ToString();
             //Сохраняем в файл sent
-			xlWorkBookNew.SaveAs(fileToSent,
-								 Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
-								 Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-			xlWorkBookNew.Close(true, misValue, misValue);
+            xlWorkBookNew.SaveAs(fileToSent,
+                                 Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
+                                 Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBookNew.Close(true, misValue, misValue);
             int count = to.Count;
-            if(count%10 == 0)
+            if (count % 10 == 0)
             {
                 Thread.Sleep(8000);
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
@@ -190,41 +190,41 @@ namespace salary3Offices///////////////////////////Some
             {
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
             }
-		}
+        }
 
 
-		public static void SendNew(string filename, string from, string employeeFullName, string period, string emailtext)
-		{
-			SmtpClient smtp = null;
-			Attachment attachment = null;
+        public static void SendNew(string filename, string from, string employeeFullName, string period, string emailtext)
+        {
+            SmtpClient smtp = null;
+            Attachment attachment = null;
 
-			if (smtphost.Equals(string.Empty))
-			{
-				Logger.Out(String.Format("SMTP host не задан. Письмо не будет отправлено."));
-				return;
-			}
+            if (smtphost.Equals(string.Empty))
+            {
+                Logger.Out(String.Format("SMTP host не задан. Письмо не будет отправлено."));
+                return;
+            }
 
-			try
-			{
-				Thread.Sleep(100);
+            try
+            {
+                Thread.Sleep(100);
 
-				if (!to.ContainsKey(employeeFullName))
-				{
-					Logger.Out(String.Format("Емейл не найден {0}", employeeFullName));
-				}
-				else 
-				{
-					MailMessage message = new MailMessage(from, to[employeeFullName]);
-					attachment = new Attachment(filename);
+                if (!to.ContainsKey(employeeFullName))
+                {
+                    Logger.Out(String.Format("Емейл не найден {0}", employeeFullName));
+                }
+                else
+                {
+                    MailMessage message = new MailMessage(from, to[employeeFullName]);
+                    attachment = new Attachment(filename);
 
-					message.Attachments.Add(attachment);
+                    message.Attachments.Add(attachment);
 
-					StringBuilder mailBody = new StringBuilder();
-					mailBody.AppendFormat("Уважаемый(ая) {0},", employeeFullName);
-					mailBody.Append(Environment.NewLine).Append(Environment.NewLine);
+                    StringBuilder mailBody = new StringBuilder();
+                    mailBody.AppendFormat("Уважаемый(ая) {0},", employeeFullName);
+                    mailBody.Append(Environment.NewLine).Append(Environment.NewLine);
 
 
-					mailBody.AppendFormat("Ваш расчетный листок {0} находится во вложении."+"\n\n" , period);
+                    mailBody.AppendFormat("Ваш расчетный листок {0} находится во вложении." + "\n\n", period);
                     if (currency != "")
                     {
                         mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfAvansString, currency);
@@ -238,17 +238,16 @@ namespace salary3Offices///////////////////////////Some
                         mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString, curencyHolliday);
                     }
 
-
                     mailBody.Append(emailtext);
-					mailBody.Append(Environment.NewLine).Append(Environment.NewLine).Append("Kind regards,").Append(Environment.NewLine);
-					mailBody.Append(fromsign);
-					message.Body = mailBody.ToString();
+                    mailBody.Append(Environment.NewLine).Append(Environment.NewLine).Append("Kind regards,").Append(Environment.NewLine);
+                    mailBody.Append(fromsign);
+                    message.Body = mailBody.ToString();
 
-					message.Subject = String.Format("Расчетный листок {0}", period);
+                    message.Subject = String.Format("Расчетный листок {0}", period);
 
-					smtp = new SmtpClient(smtphost);
+                    smtp = new SmtpClient(smtphost);
 
-                    if (port !=0 && login != null)
+                    if (port != 0 && login != null)
                     {
                         smtp.Port = port;
                         smtp.Credentials = login;
@@ -263,54 +262,54 @@ namespace salary3Offices///////////////////////////Some
 
                     Logger.Out(String.Format(to[employeeFullName]));
 
-					smtp.Send(message);
+                    smtp.Send(message);
 
-					Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
-											 to[employeeFullName]));
-				}
-		    }
-			catch (Exception e)
-			{
-				Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-			}
-			finally
-			{
-				if (attachment != null)
-				{
-					attachment.Dispose();
-				}
-				if (smtp != null)
-				{
+                    Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
+                                             to[employeeFullName]));
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+            }
+            finally
+            {
+                if (attachment != null)
+                {
+                    attachment.Dispose();
+                }
+                if (smtp != null)
+                {
                     smtp.ClientCertificates.Clear();
                     smtp.UseDefaultCredentials = true;
                     smtp.Dispose();
                 }
-			}
-		}
+            }
+        }
 
-		public static void ReadSettings(string settingfile)
-		{
-			StreamReader reader = new StreamReader(settingfile, Encoding.Default);
+        public static void ReadSettings(string settingfile)
+        {
+            StreamReader reader = new StreamReader(settingfile, Encoding.Default);
 
-			string setting;
+            string setting;
 
-			while ((setting = reader.ReadLine()) != null)
-			{
-				if (setting.StartsWith("FromEmail:"))
-				{
-					from = setting.Replace("FromEmail:", string.Empty);
-				}
-				else if (setting.StartsWith("FromSignature:"))
-				{
-					fromsign = setting.Replace("FromSignature:", string.Empty);
-				}
-				else if (setting.StartsWith("SMTP:"))
-				{
-					smtphost = setting.Replace("SMTP:", string.Empty);
-				}
-				else
-				{
-				    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
+            while ((setting = reader.ReadLine()) != null)
+            {
+                if (setting.StartsWith("FromEmail:"))
+                {
+                    from = setting.Replace("FromEmail:", string.Empty);
+                }
+                else if (setting.StartsWith("FromSignature:"))
+                {
+                    fromsign = setting.Replace("FromSignature:", string.Empty);
+                }
+                else if (setting.StartsWith("SMTP:"))
+                {
+                    smtphost = setting.Replace("SMTP:", string.Empty);
+                }
+                else
+                {
+                    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
                     string pattern = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z]+\.[a-zA-Z]+@artezio.com)";
                     string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
                     string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
@@ -320,7 +319,7 @@ namespace salary3Offices///////////////////////////Some
 
 
                     Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-					MatchCollection matches = rgx.Matches(setting);
+                    MatchCollection matches = rgx.Matches(setting);
                     Regex rgx1 = new Regex(pattern1, RegexOptions.IgnoreCase);
                     MatchCollection matches1 = rgx1.Matches(setting);
                     Regex rgx2 = new Regex(pattern2, RegexOptions.IgnoreCase);
@@ -329,19 +328,19 @@ namespace salary3Offices///////////////////////////Some
                     MatchCollection matches3 = rgx3.Matches(setting);
                     Regex rgx4 = new Regex(pattern4, RegexOptions.IgnoreCase);
                     MatchCollection matches4 = rgx4.Matches(setting);
-				    Regex rgxFor2 = new Regex(patternForTwo, RegexOptions.IgnoreCase);
+                    Regex rgxFor2 = new Regex(patternForTwo, RegexOptions.IgnoreCase);
                     MatchCollection matchesFor2 = rgxFor2.Matches(setting);
                     if (matches.Count > 0)
-					{
-						GroupCollection groups = matches[0].Groups;
-						to.Add(groups[1].ToString(), groups[3].ToString());
-					}
+                    {
+                        GroupCollection groups = matches[0].Groups;
+                        to.Add(groups[1].ToString(), groups[3].ToString());
+                    }
                     else if (matchesFor2.Count > 0)
                     {
                         GroupCollection groups2 = matchesFor2[0].Groups;
                         to.Add(groups2[1].ToString(), groups2[3].ToString());
                     }
-                    else if(matches1.Count > 0)
+                    else if (matches1.Count > 0)
                     {
                         GroupCollection groups = matches1[0].Groups;
                         to.Add(groups[1].ToString(), groups[3].ToString());
@@ -361,10 +360,9 @@ namespace salary3Offices///////////////////////////Some
                         GroupCollection groups = matches4[0].Groups;
                         to.Add(groups[1].ToString(), groups[3].ToString());
                     }
+
                 }
-                
-                
-			}
-		}
-	}
+            }
+        }
+    }
 }

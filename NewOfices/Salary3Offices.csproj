@@ -65,6 +65,7 @@
     <Compile Include="DataStorage.cs" />
     <Compile Include="Save\Datas.cs" />
     <Compile Include="Save\Servicer.cs" />
+    <Compile Include="SetCurencyInput.cs" />
     <Compile Include="WarningWindow.xaml.cs">
       <DependentUpon>WarningWindow.xaml</DependentUpon>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace SalaryReport.Save

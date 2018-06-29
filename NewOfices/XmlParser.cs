@@ -14,7 +14,6 @@ namespace SalaryReport
     {
         public string GetCurrency (XmlDocument doc)
         {
-            //XDocument xdoc = XDocument.Parse(doc.ToString());
             XmlElement xRoot = doc.DocumentElement;
             var nodeList = doc.GetElementsByTagName("Currency");
             string result = null;
@@ -28,26 +27,6 @@ namespace SalaryReport
             }
 
             return result;
-            ////IEnumerable<XElement> elements = xdoc.Element("DailyExRates").Elements("Currency");
-            //StringReader stringReader = null;
-            //XmlSerializer serializer = null;
-            //XmlTextReader xmlReader = null;
-            //DataStorage obj = null;
-            //try
-            //{
-            //    stringReader = new StringReader(doc.ToString());
-            //    serializer = new XmlSerializer(typeof(DataStorage));
-            //    xmlReader = new XmlTextReader(stringReader);
-            //    o = serializer.Deserialize(xmlReader);
-
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //    throw;
-            //}
-
-            //return (DataStorage)o;
 
         }
     }
