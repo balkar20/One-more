@@ -310,7 +310,7 @@ namespace salary3Offices///////////////////////////Some
 				}
 				else
 				{
-				    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+[@]+[a-zA-z0-9._])";
+				    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
                     string pattern = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z]+\.[a-zA-Z]+@artezio.com)";
                     string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
                     string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
@@ -336,6 +336,11 @@ namespace salary3Offices///////////////////////////Some
 						GroupCollection groups = matches[0].Groups;
 						to.Add(groups[1].ToString(), groups[3].ToString());
 					}
+                    else if (matchesFor2.Count > 0)
+                    {
+                        GroupCollection groups2 = matchesFor2[0].Groups;
+                        to.Add(groups2[1].ToString(), groups2[3].ToString());
+                    }
                     else if(matches1.Count > 0)
                     {
                         GroupCollection groups = matches1[0].Groups;
