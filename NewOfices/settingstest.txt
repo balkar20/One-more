@@ -4,4 +4,3 @@ SMTP:smtp.artgroup.local
 Балкаров Святослав Александрович:Svyataslav.Balkarov@artezio.com
 Балкаров Владислав Александрович:Vladislav.Balkarov@artezio.com
 Балкаров Александр Валерьевич:Aleksandr.Balkarov@artezio.com
-Тамари Басари:balkar20@yandex.ru
