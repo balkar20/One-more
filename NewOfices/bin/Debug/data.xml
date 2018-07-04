@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <Datas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Login>abalkarov</Login>
+  <Login>abaьльльльльл</Login>
   <Password />
   <PathToCopy>D:\lists</PathToCopy>
-  <Currency>2.0004</Currency>
-  <CurrencyZP>2.0102</CurrencyZP>
-  <CurrencyHoliday>2.0016</CurrencyHoliday>
-  <DateHoliday>11.06.2018</DateHoliday>
-  <DateZp>19.06.2018</DateZp>
-  <DateAvans>16.05.2018</DateAvans>
+  <Currency>1.9898</Currency>
+  <CurrencyZP>2.0029</CurrencyZP>
+  <CurrencyHoliday>2.004</CurrencyHoliday>
+  <DateHoliday>12.05.2018</DateHoliday>
+  <DateZp>13.06.2018</DateZp>
+  <DateAvans>23.05.2018</DateAvans>
   <FileFolder>D:\One-more\NewOfices\Расчетные май Могилев+Басари.xls</FileFolder>
   <SettingsFolder>D:\One-more\NewOfices\settingstest.txt</SettingsFolder>
   <EmailText />
