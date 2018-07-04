@@ -309,7 +309,7 @@ namespace salary3Offices
                 }
                 else
                 {
-                    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
+                    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@artezio.com)";
                     string pattern = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z]+\.[a-zA-Z]+@artezio.com)";
                     string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
                     string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
