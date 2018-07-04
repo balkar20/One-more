@@ -3,12 +3,12 @@
   <Login>abaьльльльльл</Login>
   <Password />
   <PathToCopy>D:\lists</PathToCopy>
-  <Currency>1.9898</Currency>
-  <CurrencyZP>2.0029</CurrencyZP>
-  <CurrencyHoliday>2.004</CurrencyHoliday>
-  <DateHoliday>12.05.2018</DateHoliday>
-  <DateZp>13.06.2018</DateZp>
-  <DateAvans>23.05.2018</DateAvans>
+  <Currency>2.004</Currency>
+  <CurrencyZP>2.0007</CurrencyZP>
+  <CurrencyHoliday>1.9501</CurrencyHoliday>
+  <DateHoliday>01.04.2018</DateHoliday>
+  <DateZp>16.06.2018</DateZp>
+  <DateAvans>13.05.2018</DateAvans>
   <FileFolder>D:\One-more\NewOfices\Расчетные май Могилев+Басари.xls</FileFolder>
   <SettingsFolder>D:\One-more\NewOfices\settingstest.txt</SettingsFolder>
   <EmailText />
