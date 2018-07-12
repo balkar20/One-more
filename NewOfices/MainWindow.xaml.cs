@@ -6,6 +6,7 @@ using Microsoft.Win32;
 using System.Net;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Text.RegularExpressions;
 using SalaryReport;
 using System.IO;
@@ -45,12 +46,14 @@ namespace salary3Offices
             backgroundWorker3.DoWork += BackgroundWorkerOnDoWork;
             backgroundWorker2.RunWorkerCompleted += BackgroundWorkerOnRunWorkerCompleted;
             backgroundWorker3.RunWorkerCompleted += BackgroundWorkerOnRunWorkerCompleted;
+            Helper.Op += Notyfy;
             this.Closed += (sender, args) =>
             {
                 SaveToXml(pathToXml);
             };
             RestoreFromXml(pathToXml);
         }
+
 
         private void BackgroundWorkerOnRunWorkerCompleted(object o, RunWorkerCompletedEventArgs e)
         {
@@ -111,6 +114,12 @@ namespace salary3Offices
             fileFolder.Text = openFileDialog.FileName;
         }
 
+        void Notyfy(string message)
+        {
+            logs.Text += message + Environment.NewLine;
+            //MessageBox.Show("Hi");
+        }
+
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             WarningWindow window = new WarningWindow();
@@ -157,17 +166,15 @@ namespace salary3Offices
             }
             else
             {
-                EnableDisableControls(false);
                 try
                 {
-                    logs.Text = "Идет рассылка....";
-                    logs.Text = File.ReadAllText(Helper.ConvertXslToCsv(settingsFolder.Text, fileFolder.Text, emailText.Text));
+                    logs.Text = "Идет рассылка...."+ Environment.NewLine;
+                        Helper.ConvertXslToCsv(settingsFolder.Text, fileFolder.Text, emailText.Text);
                 }
                 catch (Exception ex)
                 {
                     logs.Text = ex.StackTrace;
                 }
-                EnableDisableControls(true);
             }
             CopyFilesInDirectory();
         }

@@ -8,10 +8,15 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 
 namespace salary3Offices
 {
+    class OpEvantArgs
+    {
+        public string Message { get; set; }
+    }
     class Helper
     {
         public static string from = string.Empty;
@@ -53,6 +58,8 @@ namespace salary3Offices
 
         public static bool artOrVega;
 
+        public delegate void MyHandler(string Messsage);
+        public static event MyHandler Op; 
 
 
 
@@ -183,7 +190,7 @@ namespace salary3Offices
             int count = to.Count;
             if (count % 10 == 0)
             {
-                Thread.Sleep(8000);
+                //Thread.Sleep(8000);
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
             }
             else
@@ -206,8 +213,6 @@ namespace salary3Offices
 
             try
             {
-                Thread.Sleep(100);
-
                 if (!to.ContainsKey(employeeFullName))
                 {
                     Logger.Out(String.Format("Емейл не найден {0}", employeeFullName));
@@ -250,7 +255,7 @@ namespace salary3Offices
                     if (port != 0 && login != null)
                     {
                         smtp.Port = port;
-                        smtp.Credentials = login;
+                        smtp.UseDefaultCredentials = true;
                     }
                     else
                     {
@@ -266,11 +271,14 @@ namespace salary3Offices
 
                     Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
                                              to[employeeFullName]));
+                    Op(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
+                        to[employeeFullName]));
                 }
             }
             catch (Exception e)
             {
                 Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
             }
             finally
             {

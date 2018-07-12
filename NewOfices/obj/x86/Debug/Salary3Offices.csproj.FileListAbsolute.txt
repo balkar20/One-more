@@ -79,7 +79,6 @@ D:\NewOfices\NewOfices\obj\x86\Debug\SalaryReport.exe
 D:\NewOfices\NewOfices\obj\x86\Debug\SalaryReport.pdb
 D:\One-more\NewOfices\bin\Debug\SalaryReport.exe
 D:\One-more\NewOfices\bin\Debug\SalaryReport.pdb
-D:\One-more\NewOfices\obj\x86\Debug\Salary3Offices.csprojResolveAssemblyReference.cache
 D:\One-more\NewOfices\obj\x86\Debug\MainWindow.baml
 D:\One-more\NewOfices\obj\x86\Debug\MainWindow.g.cs
 D:\One-more\NewOfices\obj\x86\Debug\WarningWindow.g.cs
@@ -92,3 +91,5 @@ D:\One-more\NewOfices\obj\x86\Debug\SalaryReport.Properties.Resources.resources
 D:\One-more\NewOfices\obj\x86\Debug\Salary3Offices.csproj.GenerateResource.Cache
 D:\One-more\NewOfices\obj\x86\Debug\SalaryReport.exe
 D:\One-more\NewOfices\obj\x86\Debug\SalaryReport.pdb
+D:\One-more\NewOfices\obj\x86\Debug\Salary3Offices.csprojAssemblyReference.cache
+D:\One-more\NewOfices\obj\x86\Debug\Salary3Offices.csproj.CoreCompileInputs.cache
