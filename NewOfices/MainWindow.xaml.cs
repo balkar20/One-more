@@ -120,7 +120,7 @@ namespace salary3Offices
             //MessageBox.Show("Hi");
         }
 
-        private void SendButton_Click(object sender, RoutedEventArgs e)
+        private  void SendButton_Click(object sender, RoutedEventArgs e)
         {
             WarningWindow window = new WarningWindow();
             if (window.ShowDialog() == true)
@@ -169,7 +169,7 @@ namespace salary3Offices
                 try
                 {
                     logs.Text = "Идет рассылка...."+ Environment.NewLine;
-                        Helper.ConvertXslToCsv(settingsFolder.Text, fileFolder.Text, emailText.Text);
+                    Helper.ConvertXslToCsv(settingsFolder.Text, fileFolder.Text, emailText.Text);
                 }
                 catch (Exception ex)
                 {

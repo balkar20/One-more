@@ -49,6 +49,7 @@ namespace salary3Offices
 
         public static DateTime dateAvance = new DateTime(cyAvance, cmAvanse, 25);
         public static DateTime dateZP = new DateTime(cy, cm, 10);
+        private static int count;
 
         public static ObservableCollection<string> dates = new ObservableCollection<string> { dateOfZpString };
 
@@ -187,10 +188,10 @@ namespace salary3Offices
                                  Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
                                  Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBookNew.Close(true, misValue, misValue);
-            int count = to.Count;
+            count = to.Count;
             if (count % 10 == 0)
             {
-                //Thread.Sleep(8000);
+                Thread.Sleep(3000);
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
             }
             else
@@ -251,6 +252,8 @@ namespace salary3Offices
                     message.Subject = String.Format("Расчетный листок {0}", period);
 
                     smtp = new SmtpClient(smtphost);
+                    smtp.Timeout = 10000;
+                    int jj = smtp.Timeout;
 
                     if (port != 0 && login != null)
                     {
@@ -267,10 +270,11 @@ namespace salary3Offices
 
                     Logger.Out(String.Format(to[employeeFullName]));
 
+                    
                     smtp.Send(message);
 
-                    Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
-                                             to[employeeFullName]));
+                    //Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
+                    //                         to[employeeFullName]));
                     Op(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
                         to[employeeFullName]));
                 }
