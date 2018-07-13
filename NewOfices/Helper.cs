@@ -252,7 +252,7 @@ namespace salary3Offices
                     message.Subject = String.Format("Расчетный листок {0}", period);
 
                     smtp = new SmtpClient(smtphost);
-                    smtp.Timeout = 10000;
+                    smtp.Timeout = 1000;
                     int jj = smtp.Timeout;
 
                     if (port != 0 && login != null)
@@ -273,8 +273,8 @@ namespace salary3Offices
                     
                     smtp.Send(message);
 
-                    //Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
-                    //                         to[employeeFullName]));
+                    Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
+                                             to[employeeFullName]));
                     Op(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
                         to[employeeFullName]));
                 }
