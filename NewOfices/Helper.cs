@@ -191,7 +191,7 @@ namespace salary3Offices
             count = to.Count;
             if (count % 10 == 0)
             {
-                Thread.Sleep(3000);
+                //Thread.Sleep(3000);
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
             }
             else
