@@ -282,6 +282,7 @@ namespace salary3Offices
             catch (Exception e)
             {
                 Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+
                 Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
             }
             finally
