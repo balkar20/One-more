@@ -252,12 +252,13 @@ namespace salary3Offices
                     message.Subject = String.Format("Расчетный листок {0}", period);
 
                     smtp = new SmtpClient(smtphost);
-                    smtp.Timeout = 1000;
+                    smtp.Timeout = 5000;
                     int jj = smtp.Timeout;
 
                     if (port != 0 && login != null)
                     {
                         smtp.Port = port;
+                        //smtp.Credentials = login;
                         smtp.UseDefaultCredentials = true;
                     }
                     else
