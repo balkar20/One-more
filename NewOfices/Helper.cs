@@ -258,8 +258,8 @@ namespace salary3Offices
                     if (port != 0 && login != null)
                     {
                         smtp.Port = port;
-                        //smtp.Credentials = login;
-                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = login;
+                        //smtp.UseDefaultCredentials = true;
                     }
                     else
                     {
