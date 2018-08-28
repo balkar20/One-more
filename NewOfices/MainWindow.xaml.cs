@@ -200,12 +200,20 @@ namespace salary3Offices
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             //btnUpdate.IsEnabled = true;
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            var result = openFileDialog.ShowDialog();
-            if (result == false) return;
-            settingsFolder.Text = openFileDialog.FileName;
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+                openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+                var result = openFileDialog.ShowDialog();
+                if (result == false) return;
+                settingsFolder.Text = openFileDialog.FileName;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Ошибка: " + exception.Message);
+            }
+            
         }
 
         private void textBox1_TextChanged_1(object sender, TextChangedEventArgs e)

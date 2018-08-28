@@ -190,9 +190,9 @@ namespace salary3Offices
                                  Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBookNew.Close(true, misValue, misValue);
             //count = to.Count;
-            if (count % 5 == 0)
+            if (count % 8 == 0)
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(10000);
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
                 count -= 1;
             }
