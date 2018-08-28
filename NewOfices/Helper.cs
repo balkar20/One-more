@@ -98,6 +98,7 @@ namespace salary3Offices
                 var cellValue = (Object[,])excelCell.Value;
                 string rstart = string.Empty;
                 string rend = string.Empty;
+                count = to.Count;
 
                 foreach (object s in (Array)cellValue)
                 {
@@ -188,15 +189,17 @@ namespace salary3Offices
                                  Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
                                  Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBookNew.Close(true, misValue, misValue);
-            count = to.Count;
-            if (count % 10 == 0)
+            //count = to.Count;
+            if (count % 5 == 0)
             {
-                //Thread.Sleep(3000);
+                Thread.Sleep(3000);
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
+                count -= 1;
             }
             else
             {
                 SendNew(fileToSent, from, emplname, emplperios, emailtext);
+                count -= 1;
             }
         }
 
@@ -252,7 +255,7 @@ namespace salary3Offices
                     message.Subject = String.Format("Расчетный листок {0}", period);
 
                     smtp = new SmtpClient(smtphost);
-                    smtp.Timeout = 5000;
+                    smtp.Timeout = 3500;
                     int jj = smtp.Timeout;
 
                     if (port != 0 && login != null)
@@ -288,16 +291,16 @@ namespace salary3Offices
             }
             finally
             {
-                if (attachment != null)
-                {
-                    attachment.Dispose();
-                }
-                if (smtp != null)
-                {
-                    smtp.ClientCertificates.Clear();
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Dispose();
-                }
+                //if (attachment != null)
+                //{
+                //    attachment.Dispose();
+                //}
+                //if (smtp != null)
+                //{
+                //    smtp.ClientCertificates.Clear();
+                //    smtp.UseDefaultCredentials = true;
+                //    smtp.Dispose();
+                //}
             }
         }
 
