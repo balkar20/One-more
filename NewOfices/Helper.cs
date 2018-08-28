@@ -291,16 +291,16 @@ namespace salary3Offices
             }
             finally
             {
-                //if (attachment != null)
-                //{
-                //    attachment.Dispose();
-                //}
-                //if (smtp != null)
-                //{
-                //    smtp.ClientCertificates.Clear();
-                //    smtp.UseDefaultCredentials = true;
-                //    smtp.Dispose();
-                //}
+                if (attachment != null)
+                {
+                    attachment.Dispose();
+                }
+                if (smtp != null)
+                {
+                    smtp.ClientCertificates.Clear();
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Dispose();
+                }
             }
         }
 
