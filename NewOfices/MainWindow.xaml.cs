@@ -249,7 +249,8 @@ namespace salary3Offices
             }
             else
             {
-                port = 587;
+                port = 9999;
+                //port = 25;
             }
 
         }

@@ -23,7 +23,7 @@ namespace salary3Offices
         public static string fromsign = string.Empty;
         public static string smtphost = string.Empty;
         public static Dictionary<string, string> to = new Dictionary<string, string>();
-        public static int i = 0;
+        //public static int i = 0;
 
         public static NetworkCredential login;
         public static int port = 0;
@@ -256,21 +256,22 @@ namespace salary3Offices
 
                     smtp = new SmtpClient(smtphost);
                     smtp.Timeout = 3500;
-                    int jj = smtp.Timeout;
 
-                    if (port != 0 && login != null)
-                    {
-                        smtp.Port = port;
-                        smtp.Credentials = login;
-                        //smtp.UseDefaultCredentials = true;
-                    }
-                    else
-                    {
-                        smtp.UseDefaultCredentials = true;
-                    }
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
+                    //if (port != 0 && login != null)
+                    //{
+                    //    smtp.Port = port;
+                    //    smtp.Credentials = login;
+                    //    smtp.UseDefaultCredentials = true;
+                    //}
+                    //else
+                    //{
+                    //    smtp.UseDefaultCredentials = true;
+                    //}
+                    smtp.Port = 9999;
+                    smtp.UseDefaultCredentials = true;
                     //smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                     Logger.Out(String.Format(to[employeeFullName]));
 
@@ -291,16 +292,16 @@ namespace salary3Offices
             }
             finally
             {
-                if (attachment != null)
-                {
-                    attachment.Dispose();
-                }
-                if (smtp != null)
-                {
-                    smtp.ClientCertificates.Clear();
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Dispose();
-                }
+                //if (attachment != null)
+                //{
+                //    attachment.Dispose();
+                //}
+                //if (smtp != null)
+                //{
+                //    smtp.ClientCertificates.Clear();
+                //    smtp.UseDefaultCredentials = true;
+                //    smtp.Dispose();
+                //}
             }
         }
 
