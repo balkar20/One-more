@@ -250,13 +250,13 @@ namespace salary3Offices
             else
             {
                 port = 9999;
-                //port = 25;
             }
 
         }
         private void wayOfCopy_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
             var result = dialog.ShowDialog();
 
             txbxPathToCopy.Text = dialog.SelectedPath;
