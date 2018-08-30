@@ -54,16 +54,10 @@ namespace salary3Offices
         public static ObservableCollection<string> dates = new ObservableCollection<string> { dateOfZpString };
 
         public static string patternDate = @"^(((0[1-9]|[12]\d|3[01])\.(0[13578]|1[02])\.((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\.(0[13456789]|1[012])\.((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\.02\.((19|[2-9]\d)\d{2}))|(29\.02\.((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$";
-
-
-
         public static bool artOrVega;
 
         public delegate void MyHandler(string Messsage);
         public static event MyHandler Op;
-
-
-
 
         private static Excel.Application xlApp;
         private static Excel.Workbook xlWorkBook;
@@ -86,20 +80,15 @@ namespace salary3Offices
             string end = string.Empty;
             if (xlWorkSheet != null)
             {
-
                 int rowStart = 0;
                 int rowEnd = 0;
                 int pos = 0;
-
-
-
                 Excel.Range last = xlWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
                 Excel.Range excelCell = xlWorkSheet.get_Range("A1", last);
                 var cellValue = (Object[,])excelCell.Value;
                 string rstart = string.Empty;
                 string rend = string.Empty;
                 count = to.Count;
-
                 foreach (object s in (Array)cellValue)
                 {
                     pos++;
@@ -126,7 +115,6 @@ namespace salary3Offices
             }
             xlWorkBook.Close();
             return Logger.Save(folder);
-
         }
 
         private static void CopyRange(string rstart, string rend, int rowStart, int rowEnd, string folder, string emailtext)
@@ -151,8 +139,6 @@ namespace salary3Offices
             Regex rgx = new Regex(vegaNamePattern);
             Regex rgx2 = new Regex(vegaPeriosPattern);
 
-
-
             //Находит ФИО 
             var emplname = (string)(excelCellNew.Cells[3, 2] as Excel.Range).Value;
 
@@ -173,9 +159,6 @@ namespace salary3Offices
                 //Находит Период
                 emplperios = newPerios;
             }
-
-
-
 
             bool folderExists = Directory.Exists(folder + sent);
             if (!folderExists)
@@ -204,7 +187,6 @@ namespace salary3Offices
 
             SendNew(fileToSent, from, emplname, emplperios, emailtext);
         }
-
 
         public static void SendNew(string filename, string from, string employeeFullName, string period, string emailtext)
         {
@@ -328,8 +310,6 @@ namespace salary3Offices
                     string pattern3 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@mail.ru)";
                     string pattern4 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+[@]+[a-zA-z0-9._])";
 
-
-
                     Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
                     MatchCollection matches = rgx.Matches(setting);
                     Regex rgx1 = new Regex(pattern1, RegexOptions.IgnoreCase);
@@ -372,7 +352,6 @@ namespace salary3Offices
                         GroupCollection groups = matches4[0].Groups;
                         to.Add(groups[1].ToString(), groups[3].ToString());
                     }
-
                 }
             }
         }

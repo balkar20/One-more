@@ -311,7 +311,6 @@ namespace salary3Offices
                 return;
             }
 
-
             txbxCurrency.Text = datas.Currency;
             txbxCurrencyZP.Text = datas.CurrencyZP;
             txbxCurrencyHolliday.Text = datas.CurrencyHoliday;
