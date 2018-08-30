@@ -60,7 +60,7 @@ namespace salary3Offices
         public static bool artOrVega;
 
         public delegate void MyHandler(string Messsage);
-        public static event MyHandler Op; 
+        public static event MyHandler Op;
 
 
 
@@ -190,17 +190,19 @@ namespace salary3Offices
                                  Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBookNew.Close(true, misValue, misValue);
             //count = to.Count;
-            if (count % 8 == 0)
-            {
-                Thread.Sleep(10000);
-                SendNew(fileToSent, from, emplname, emplperios, emailtext);
-                count -= 1;
-            }
-            else
-            {
-                SendNew(fileToSent, from, emplname, emplperios, emailtext);
-                count -= 1;
-            }
+            //if (count % 8 == 0)
+            //{
+            //    Thread.Sleep(10000);
+            //    SendNew(fileToSent, from, emplname, emplperios, emailtext);
+            //    count -= 1;
+            //}
+            //else
+            //{
+            //    SendNew(fileToSent, from, emplname, emplperios, emailtext);
+            //    count -= 1;
+            //}
+
+            SendNew(fileToSent, from, emplname, emplperios, emailtext);
         }
 
 
@@ -214,95 +216,87 @@ namespace salary3Offices
                 Logger.Out(String.Format("SMTP host не задан. Письмо не будет отправлено."));
                 return;
             }
-
-            try
+            if (!to.ContainsKey(employeeFullName))
             {
-                if (!to.ContainsKey(employeeFullName))
-                {
-                    Logger.Out(String.Format("Емейл не найден {0}", employeeFullName));
-                }
-                else
-                {
-                    MailMessage message = new MailMessage(from, to[employeeFullName]);
-                    attachment = new Attachment(filename);
-
-                    message.Attachments.Add(attachment);
-
-                    StringBuilder mailBody = new StringBuilder();
-                    mailBody.AppendFormat("Уважаемый(ая) {0},", employeeFullName);
-                    mailBody.Append(Environment.NewLine).Append(Environment.NewLine);
-
-
-                    mailBody.AppendFormat("Ваш расчетный листок {0} находится во вложении." + "\n\n", period);
-                    if (currency != "")
-                    {
-                        mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfAvansString, currency);
-                    }
-                    if (currencyZP != "")
-                    {
-                        mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfZpString, currencyZP);
-                    }
-                    if (curencyHolliday != "")
-                    {
-                        mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString, curencyHolliday);
-                    }
-
-                    mailBody.Append(emailtext);
-                    mailBody.Append(Environment.NewLine).Append(Environment.NewLine).Append("Kind regards,").Append(Environment.NewLine);
-                    mailBody.Append(fromsign);
-                    message.Body = mailBody.ToString();
-
-                    message.Subject = String.Format("Расчетный листок {0}", period);
-
-                    smtp = new SmtpClient(smtphost);
-                    smtp.Timeout = 3500;
-
-
-                    //if (port != 0 && login != null)
-                    //{
-                    //    smtp.Port = port;
-                    //    smtp.Credentials = login;
-                    //    smtp.UseDefaultCredentials = true;
-                    //}
-                    //else
-                    //{
-                    //    smtp.UseDefaultCredentials = true;
-                    //}
-                    smtp.Port = 9999;
-                    smtp.UseDefaultCredentials = true;
-                    //smtp.EnableSsl = true;
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-                    Logger.Out(String.Format(to[employeeFullName]));
-
-                    
-                    smtp.Send(message);
-
-                    Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
-                                             to[employeeFullName]));
-                    Op(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
-                        to[employeeFullName]));
-                }
+                Logger.Out(String.Format("Емейл не найден {0}", employeeFullName));
             }
-            catch (Exception e)
+            else
             {
-                Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                MailMessage message = new MailMessage(from, to[employeeFullName]);
+                attachment = new Attachment(filename);
 
-                Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-            }
-            finally
-            {
-                //if (attachment != null)
+                message.Attachments.Add(attachment);
+
+                StringBuilder mailBody = new StringBuilder();
+                mailBody.AppendFormat("Уважаемый(ая) {0},", employeeFullName);
+                mailBody.Append(Environment.NewLine).Append(Environment.NewLine);
+
+
+                mailBody.AppendFormat("Ваш расчетный листок {0} находится во вложении." + "\n\n", period);
+                if (currency != "")
+                {
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfAvansString, currency);
+                }
+                if (currencyZP != "")
+                {
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfZpString, currencyZP);
+                }
+                if (curencyHolliday != "")
+                {
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString, curencyHolliday);
+                }
+                mailBody.Append(emailtext);
+                mailBody.Append(Environment.NewLine).Append(Environment.NewLine).Append("Kind regards,").Append(Environment.NewLine);
+                mailBody.Append(fromsign);
+                message.Body = mailBody.ToString();
+                message.Subject = String.Format("Расчетный листок {0}", period);
+                smtp = new SmtpClient(smtphost);
+                smtp.Timeout = 200;
+                //if (port != 0 && login != null)
                 //{
-                //    attachment.Dispose();
-                //}
-                //if (smtp != null)
-                //{
-                //    smtp.ClientCertificates.Clear();
+                //    smtp.Port = port;
+                //    smtp.Credentials = login;
                 //    smtp.UseDefaultCredentials = true;
-                //    smtp.Dispose();
                 //}
+                //else
+                //{
+                //    smtp.UseDefaultCredentials = true;
+                //}
+                smtp.Port = port;
+                smtp.UseDefaultCredentials = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                Logger.Out(String.Format(to[employeeFullName]));
+                try
+                {
+                    smtp.Send(message);
+                }
+                catch (Exception e)
+                {
+                    if (e.Message.Contains("Temporary server error"))
+                    {
+                        try
+                        {
+                            smtp.Send(message);
+                        }
+                        catch
+                        {
+                            Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                            Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                        }
+                    }
+                    else
+                    {
+                        Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                        Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                    }
+                }
+
+                Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
+                                         to[employeeFullName]));
+                Op(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
+                    to[employeeFullName]));
             }
+
         }
 
         public static void ReadSettings(string settingfile)
