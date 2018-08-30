@@ -114,7 +114,8 @@ namespace salary3Offices
                 CopyRange("A" + (rowEnd + 1), "E" + excelCell.Rows.Count + 1, rowEnd, excelCell.Rows.Count, folder, emailtext);
             }
             xlWorkBook.Close();
-            return Logger.Save(folder);
+            var pathToLogs = Environment.CurrentDirectory + @"..\..\..\logs";
+            return Logger.Save(pathToLogs);
         }
 
         private static void CopyRange(string rstart, string rend, int rowStart, int rowEnd, string folder, string emailtext)
