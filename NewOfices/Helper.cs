@@ -184,8 +184,31 @@ namespace salary3Offices
             //    SendNew(fileToSent, from, emplname, emplperios, emailtext);
             //    count -= 1;
             //}
+            bool errFlag = true;
 
-            SendNew(fileToSent, from, emplname, emplperios, emailtext);
+            while (errFlag)
+            {
+                try
+                {
+                    SendNew(fileToSent, from, emplname, emplperios, emailtext);
+                    errFlag = false;
+                }
+                catch(Exception e)
+                {
+                    if (e.Message.Contains("Temporary server error") || e.Message.Contains("The operation has timed out"))
+                    {
+                        Logger.Out("Пробуем отправить еще раз!");
+                        Op("Пробуем отправить еще раз!");
+                    }
+                    else
+                    {
+                        Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                        Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                        errFlag = false;
+                    }
+                    
+                }
+            }
         }
 
         public static void SendNew(string filename, string from, string employeeFullName, string period, string emailtext)
@@ -233,7 +256,7 @@ namespace salary3Offices
                 message.Body = mailBody.ToString();
                 message.Subject = String.Format("Расчетный листок {0}", period);
                 smtp = new SmtpClient(smtphost);
-                smtp.Timeout = 200;
+                smtp.Timeout = 1000;
                 //if (port != 0 && login != null)
                 //{
                 //    smtp.Port = port;
@@ -254,23 +277,7 @@ namespace salary3Offices
                 }
                 catch (Exception e)
                 {
-                    if (e.Message.Contains("Temporary server error"))
-                    {
-                        try
-                        {
-                            smtp.Send(message);
-                        }
-                        catch
-                        {
-                            Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-                            Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-                        }
-                    }
-                    else
-                    {
-                        Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-                        Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-                    }
+                    throw;
                 }
 
                 Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,

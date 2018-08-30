@@ -1,4 +1,0 @@
-Vladislav.Balkarov@artezio.com
-Ошибка при попытке отправить письмо для System.Collections.Generic.Dictionary`2[System.String,System.String]: Server does not support secure connections.
-Vladislav.Balkarov@artezio.com
-Ошибка при попытке отправить письмо для System.Collections.Generic.Dictionary`2[System.String,System.String]: Server does not support secure connections.
