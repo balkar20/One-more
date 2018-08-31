@@ -4,23 +4,17 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 using System.Net;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.Eventing.Reader;
-using System.Text.RegularExpressions;
+using System.Diagnostics;
 using SalaryReport;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security.RightsManagement;
+using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
-using System.Windows.Navigation;
 using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
+using Microsoft.Office.Interop.Excel;
 using SalaryReport.Save;
+using Button = System.Windows.Controls.Button;
+using Window = System.Windows.Window;
 
 namespace salary3Offices
 {
@@ -54,6 +48,24 @@ namespace salary3Offices
             RestoreFromXml(pathToXml);
         }
 
+        private static void DeleteFromSent()
+        {
+            string pathFrom = Environment.CurrentDirectory + @"\..\..\Sent";
+
+            DirectoryInfo sourse = new DirectoryInfo(pathFrom);
+
+            try
+            {
+                foreach (var file in sourse.GetFiles())
+                {
+                    file.Delete();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Ошибка при удалении использованных файлов из Sent");
+            }
+        }
 
         private void BackgroundWorkerOnRunWorkerCompleted(object o, RunWorkerCompletedEventArgs e)
         {
@@ -98,16 +110,12 @@ namespace salary3Offices
             {
                 foreach (var item in sourse.GetFiles())
                 {
-                    item.CopyTo(destin + item.Name, true);
-                }
-                foreach (var item in sourse.GetFiles())
-                {
-                    item.Delete();
+                    item.MoveTo(destin + item.Name);
                 }
             }
             catch (Exception ex)
             {
-                Logger.Out("Ошибка при добавлении листка в папку");
+                MessageBox.Show("Ошибка при добавлении листка в папку");
             }
 
         }
@@ -115,7 +123,12 @@ namespace salary3Offices
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string pathText = fileFolder.Text;
+            string [] oldPathArr = pathText.Split(new Char[] {'\\'});
+            string [] newPathArr = oldPathArr.Take(oldPathArr.Length - 1).ToArray();
+            string newPath = String.Join("\\", newPathArr);
+
+            openFileDialog.InitialDirectory = newPath;
             openFileDialog.Filter = "EXCEL Files (*.xls)|*.xls|EXCEL Files (*.xlsx)|*.xlsx";
             var result = openFileDialog.ShowDialog();
             if (result == false) return;
@@ -130,6 +143,7 @@ namespace salary3Offices
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
+            Helper.pathToCopyExcel = txbxPathToCopy.Text + "\\";
             WarningWindow window = new WarningWindow();
             if (window.ShowDialog() == true)
             {
@@ -184,7 +198,8 @@ namespace salary3Offices
                     logs.Text = ex.StackTrace;
                 }
             }
-            CopyFilesInDirectory();
+            //CopyFilesInDirectory();
+            //DeleteFromSent();
         }
 
         private void EnableDisableControls(bool isEnabled)
@@ -199,11 +214,10 @@ namespace salary3Offices
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            //btnUpdate.IsEnabled = true;
             try
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+                openFileDialog.InitialDirectory = settingsFolder.Text;
                 openFileDialog.Filter = "Text Files (*.txt)|*.txt";
                 var result = openFileDialog.ShowDialog();
                 if (result == false) return;
@@ -256,7 +270,7 @@ namespace salary3Offices
         private void wayOfCopy_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            dialog.SelectedPath = System.AppDomain.CurrentDomain.BaseDirectory;
+            dialog.SelectedPath = txbxPathToCopy.Text;
             var result = dialog.ShowDialog();
 
             txbxPathToCopy.Text = dialog.SelectedPath;
@@ -380,5 +394,44 @@ namespace salary3Offices
                 txbxDateHolliday.Text = "";
             }
         }
+
+        // Проверяем есть ли в ОС программа, которая может открыть
+        // файл с указанным расширением.
+        private bool HasRegisteredFileExstension(string fileExstension)
+        {
+            RegistryKey rkRoot = Registry.ClassesRoot;
+            RegistryKey rkFileType = rkRoot.OpenSubKey(fileExstension);
+
+            return rkFileType != null;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            //string pathFrom = Environment.CurrentDirectory + @"\..\..\Sent";
+            string pathMain = Environment.CurrentDirectory;
+            string[] arr1 = pathMain.Split(new char[] {'\\'});
+            string[] newArr = arr1.Take(arr1.Length - 2).ToArray();
+            string path = String.Join(@"\", newArr) + "\\logs\\";
+
+            openFileDialog.InitialDirectory = path;
+
+            // Открываем окно диалога с пользователем.
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Получаем расширение файла, выбранного пользователем.
+                var extension = Path.GetExtension(openFileDialog.FileName);
+
+                // Проверяем есть ли в ОС программа, которая может открыть
+                // файл с указанным расширением.
+                if (HasRegisteredFileExstension(extension))
+                {
+                    // Открываем файл. 
+                    Process.Start(openFileDialog.FileName);
+                }
+            }
+        }
+
+        
     }
 }

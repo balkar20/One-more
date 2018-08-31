@@ -21,6 +21,8 @@ namespace salary3Offices
             {
                 outfile.Write(LogString.ToString());
             }
+
+		    LogString.Clear();
 			return fileName;
 		}
     }

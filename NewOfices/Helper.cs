@@ -66,6 +66,7 @@ namespace salary3Offices
         private static Excel.Application xlAppNew;
         private static Excel.Workbook xlWorkBookNew;
         private static Excel.Worksheet xlWorkSheetNew;
+        public static string pathToCopyExcel;
 
         public static string sent = "\\Sent\\";
 
@@ -161,13 +162,14 @@ namespace salary3Offices
                 emplperios = newPerios;
             }
 
+            //Конфиг - файл + send -- Добавляет папку send
             bool folderExists = Directory.Exists(folder + sent);
             if (!folderExists)
                 Directory.CreateDirectory(folder + sent);
 
             //Указываем имя файла который будет отправлен
             string fileToSent =
-                new StringBuilder(folder).Append(sent).Append(emplname).Append(".xls").ToString();
+                new StringBuilder(pathToCopyExcel).Append(emplname).Append(".xls").ToString();
             //Сохраняем в файл sent
             xlWorkBookNew.SaveAs(fileToSent,
                                  Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
@@ -186,7 +188,7 @@ namespace salary3Offices
             //    count -= 1;
             //}
             bool errFlag = true;
-
+            int counterFail = 20;
             while (errFlag)
             {
                 try
@@ -200,6 +202,21 @@ namespace salary3Offices
                     {
                         Logger.Out("Пробуем отправить еще раз!");
                         Op("Пробуем отправить еще раз!");
+                    }
+                    else if(e.Message.Contains("Failure sending mail"))
+                    {
+                        if (counterFail <= 20)
+                        {
+                            Logger.Out("Пробуем отправить еще раз!");
+                            Op("Пробуем отправить еще раз!");
+                            counterFail--;
+                        }
+                        else
+                        {
+                            Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                            Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                            errFlag = false;
+                        }
                     }
                     else
                     {
