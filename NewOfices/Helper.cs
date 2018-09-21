@@ -198,17 +198,17 @@ namespace salary3Offices
                 }
                 catch (Exception e)
                 {
-                    Thread.Sleep(500);
                     if (counterFail >= 0)
                     {
-                        Logger.Out("Пробуем отправить еще раз!");
-                        Op("Пробуем отправить еще раз!");
+                        Logger.Out("Упс! Пробуем отправить еще раз!");
+                        Op("Упс! Пробуем отправить еще раз!");
                         counterFail--;
+                        Thread.Sleep(300);
                     }
                     else
                     {
-                        Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-                        Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
+                        Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", emplname, e.Message));
+                        Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", emplname, e.Message));
                         errFlag = false;
                     }
                 }
