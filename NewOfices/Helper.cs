@@ -188,7 +188,7 @@ namespace salary3Offices
             //    count -= 1;
             //}
             bool errFlag = true;
-            int counterFail = 20;
+            int counterFail = 60;
             while (errFlag)
             {
                 try
@@ -196,27 +196,14 @@ namespace salary3Offices
                     SendNew(fileToSent, from, emplname, emplperios, emailtext);
                     errFlag = false;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
-                    if (e.Message.Contains("Temporary server error") || e.Message.Contains("The operation has timed out"))
+                    Thread.Sleep(500);
+                    if (counterFail >= 0)
                     {
                         Logger.Out("Пробуем отправить еще раз!");
                         Op("Пробуем отправить еще раз!");
-                    }
-                    else if(e.Message.Contains("Failure sending mail"))
-                    {
-                        if (counterFail <= 20)
-                        {
-                            Logger.Out("Пробуем отправить еще раз!");
-                            Op("Пробуем отправить еще раз!");
-                            counterFail--;
-                        }
-                        else
-                        {
-                            Logger.Out(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-                            Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
-                            errFlag = false;
-                        }
+                        counterFail--;
                     }
                     else
                     {
@@ -224,7 +211,6 @@ namespace salary3Offices
                         Op(String.Format("Ошибка при попытке отправить письмо для {0}: {1}", to, e.Message));
                         errFlag = false;
                     }
-                    
                 }
             }
         }
@@ -274,7 +260,6 @@ namespace salary3Offices
                 message.Body = mailBody.ToString();
                 message.Subject = String.Format("Расчетный листок {0}", period);
                 smtp = new SmtpClient(smtphost);
-                smtp.Timeout = 1000;
                 //if (port != 0 && login != null)
                 //{
                 //    smtp.Port = port;
