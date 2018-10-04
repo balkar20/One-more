@@ -1,0 +1,169 @@
+﻿<Window x:Class="YasenPen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YasenPen"
+        mc:Ignorable="d"
+        Title="Ясен пень 2" Height="850" Width="1325"  ResizeMode="CanMinimize" Icon="img/search.png">
+    <Window.Background>
+    <ImageBrush ImageSource="img/fone.jpg" />
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property ="Margin" Value="5"/>
+            <Setter Property="TextElement.Foreground" Value="Aqua"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property ="Margin" Value="10"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <ObjectDataProvider x:Key="phonesProvider"
+                ObjectType="{x:Type local:ResponseRepository}" MethodName="GetResponse" />
+        
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="3">
+            <StackPanel Orientation="Horizontal">
+                <Label    >Введите номер списка</Label>
+                <TextBox Name="txbx_nsp" ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label    Width="200" >
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите Введите дату в формате: 25.04.2017</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_dsp" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Номер филиала</Label>
+                <TextBox Name="txbx_nfil"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Номер центра Банковских услуг</Label>
+                <TextBox Name="txbx_ncbu"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label    Width="200" >
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите номер структурного подразделения банка</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_notd"  ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label    Width="200" >
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите номер счета плательщика с которого производятся перечисление денежных средств</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_acc"  ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>ФИО составителя списка</Label>
+                <TextBox Name="txbx_fisp" Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}" behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Source={StaticResource phonesProvider} }"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label    Width="200" >
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите общее количество получателей в списке</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_total_p" ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>ведите общюю сумму списка</Label>
+                <TextBox Name="txbx_total_s" ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите назначение перечисления</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_nzp"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите номер платежного поручения</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_npp"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label    Width="200" >
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите дату платежного поручения на перечислене денежных средств</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_dpp"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>
+                    <Label.Content>
+                        <TextBlock  TextWrapping="Wrap">Введите вид зачисляемого списка</TextBlock>
+                    </Label.Content>
+                </Label>
+                <TextBox Name="txbx_vsp" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label>Номер заключенного договора</Label>
+                <TextBox Name="txbx_contract"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" Height="100" VerticalAlignment="Bottom">
+            <Button x:Name="btn_go" Margin="10" Width="110" Height="80" Background="Purple"  VerticalAlignment="Top" Click="btn_go_Click">Отфармотировать!</Button>
+            <StackPanel Orientation="Vertical">
+                <Label>Введите название листа в Excel</Label>
+                <TextBox x:Name="txbx_way"  VerticalAlignment="Bottom" Height="30" ></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal"  Height="130" VerticalAlignment="Top" Width="390">
+            <Button x:Name="btn_findExcel" Click="btn_findExcel_Click"  Margin="10" Width="100" Height="100"  VerticalAlignment="Top">Найти excel!</Button>
+            <StackPanel Orientation="Vertical">
+                <Label>Путь к файлу Excel</Label>
+                <TextBox x:Name="txbx_file" VerticalAlignment="Bottom" Height="30" ></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Height="130"  VerticalAlignment="Bottom" Width="390">
+            <Button x:Name="btn_show" Margin="10" Width="110" Height="100"  VerticalAlignment="Top" Click="btn_show_Click">Показать таблицу!</Button>
+            <StackPanel Orientation="Vertical">
+                <Label>Введите название листа в Excel</Label>
+                <TextBox Name="txbx_choice" VerticalAlignment="Bottom" Height="30" ></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Foreground="Azure"  Width="350" FontSize="20" TextWrapping="Wrap" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <TextBlock FontStyle="Oblique" Foreground="RosyBrown" TextWrapping="Wrap">
+                Файл Excel в котором содержится исходная таблица должен быть открытым!+ Он не должен содержать объедененных ячеек!+Первая строка должна содержать только заголовки столбцов а не сами данные !!<LineBreak/>Если вы хотите добавить еще строку или отредактировать, вы можете сделать это прямо в гриде!!
+            </TextBlock>
+            <TextBlock Foreground="Red" TextWrapping="Wrap" FontSize="15">
+                1.Заполните все текстовые поля<LineBreak/>2.Нажмите на кнопку "Найти Excel" и выберите файл Excel<LineBreak/>3.Введите название листа -->>"Показать таблицу"<LineBreak/>4.Введите путь к файлу -->>"Отформатировать"
+            </TextBlock>
+        </TextBlock>
+        <DataGrid x:Name="dg_info" Height="400" VerticalAlignment="Bottom" Grid.RowSpan="2">
+        </DataGrid>
+        <Image Source="img/QhcnSWdbyMk.jpg" Grid.Column="0" VerticalAlignment="Top" Height="400"  />
+        
+
+    </Grid>
+</Window>

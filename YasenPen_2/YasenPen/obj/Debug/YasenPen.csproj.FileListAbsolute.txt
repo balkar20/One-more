@@ -1,0 +1,34 @@
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\MainWindow.g.cs
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\App.g.cs
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\GeneratedInternalTypeHelper.g.cs
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen_MarkupCompile.cache
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen_MarkupCompile.lref
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen.exe
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen.pdb
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\bin\Debug\YasenPen.exe.config
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\bin\Debug\YasenPen.exe
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\bin\Debug\YasenPen.pdb
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\MainWindow.baml
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen.g.resources
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen.Properties.Resources.resources
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen.csproj.GenerateResource.Cache
+c:\users\vbalkarov\documents\visual studio 2017\Projects\YasenPen\YasenPen\bin\Debug\WPFTextBoxAutoComplete.dll
+C:\Users\vbalkarov\Documents\Visual Studio 2017\Projects\YasenPen\YasenPen\obj\Debug\YasenPen.csprojResolveAssemblyReference.cache
+D:\One-more\YasenPen_2\YasenPen\bin\Debug\YasenPen.exe.config
+D:\One-more\YasenPen_2\YasenPen\bin\Debug\YasenPen.exe
+D:\One-more\YasenPen_2\YasenPen\bin\Debug\YasenPen.pdb
+D:\One-more\YasenPen_2\YasenPen\bin\Debug\WPFTextBoxAutoComplete.dll
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.csprojAssemblyReference.cache
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\MainWindow.g.cs
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\App.g.cs
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen_MarkupCompile.cache
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen_MarkupCompile.lref
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\MainWindow.baml
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.g.resources
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.Properties.Resources.resources
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.csproj.GenerateResource.cache
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.csproj.CoreCompileInputs.cache
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.csproj.CopyComplete
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.exe
+D:\One-more\YasenPen_2\YasenPen\obj\Debug\YasenPen.pdb
