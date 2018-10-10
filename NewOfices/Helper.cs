@@ -31,10 +31,14 @@ namespace salary3Offices
         public static string currency = "";
         public static string currencyZP = "";
         public static string curencyHolliday = "";
+        public static string curencyHolliday2 = "";
+        public static string curencyHolliday3 = "";
 
         public static string dateOfZpString = "";
         public static string dateOfAvansString = "";
         public static string dateOfHollydayString = "";
+        public static string dateOfHollydayString2 = "";
+        public static string dateOfHollydayString3 = "";
 
 
         public static DateTime curentDate = DateTime.Now;
@@ -171,22 +175,21 @@ namespace salary3Offices
             string fileToSent =
                 new StringBuilder(pathToCopyExcel).Append(emplname).Append(".xls").ToString();
             //Сохраняем в файл sent
-            xlWorkBookNew.SaveAs(fileToSent,
-                                 Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
-                                 Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBookNew.Close(true, misValue, misValue);
-            //count = to.Count;
-            //if (count % 8 == 0)
-            //{
-            //    Thread.Sleep(10000);
-            //    SendNew(fileToSent, from, emplname, emplperios, emailtext);
-            //    count -= 1;
-            //}
-            //else
-            //{
-            //    SendNew(fileToSent, from, emplname, emplperios, emailtext);
-            //    count -= 1;
-            //}
+
+            try
+            {
+                xlWorkBookNew.SaveAs(fileToSent,
+                                                 Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
+                                                 Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBookNew.Close(true, misValue, misValue);
+            }
+            catch (Exception e)
+            {
+                Logger.Out(String.Format("Ошибка при сохранении Excel для {0}: {1}", emplname, e.Message));
+                Op(String.Format("Ошибка при сохранении Excel для {0}: {1}", emplname, e.Message));
+            }
+            
+
             bool errFlag = true;
             int counterFail = 60;
             while (errFlag)
@@ -254,34 +257,26 @@ namespace salary3Offices
                 {
                     mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString, curencyHolliday);
                 }
+                if (curencyHolliday2 != "")
+                {
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString2, curencyHolliday2);
+                }
+                if (curencyHolliday3 != "")
+                {
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString3, curencyHolliday3);
+                }
                 mailBody.Append(emailtext);
                 mailBody.Append(Environment.NewLine).Append(Environment.NewLine).Append("Kind regards,").Append(Environment.NewLine);
                 mailBody.Append(fromsign);
                 message.Body = mailBody.ToString();
                 message.Subject = String.Format("Расчетный листок {0}", period);
                 smtp = new SmtpClient(smtphost);
-                //if (port != 0 && login != null)
-                //{
-                //    smtp.Port = port;
-                //    smtp.Credentials = login;
-                //    smtp.UseDefaultCredentials = true;
-                //}
-                //else
-                //{
-                //    smtp.UseDefaultCredentials = true;
-                //}
                 smtp.Port = port;
                 smtp.UseDefaultCredentials = true;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 Logger.Out(String.Format(to[employeeFullName]));
-                try
-                {
                     smtp.Send(message);
-                }
-                catch (Exception e)
-                {
-                    throw;
-                }
+                
 
                 Logger.Out(String.Format("Расчетный листок для {0} был отправлен на адрес {1}", employeeFullName,
                                          to[employeeFullName]));

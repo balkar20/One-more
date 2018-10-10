@@ -177,6 +177,16 @@ namespace salary3Offices
                 Helper.dateOfAvansString = txbx_DateAvans.Text;
                 Helper.currency = txbxCurrency.Text;
             }
+            if (txbxDateHolliday2.Text != "")
+            {
+                Helper.dateOfHollydayString2 = txbxDateHolliday2.Text;
+                Helper.curencyHolliday2 = txbxCurrencyHolliday2.Text;
+            }
+            if (txbxDateHolliday3.Text != "")
+            {
+                Helper.dateOfHollydayString3 = txbxDateHolliday3.Text;
+                Helper.curencyHolliday3 = txbxCurrencyHolliday3.Text;
+            }
 
             if (String.IsNullOrEmpty(settingsFolder.Text))
             {
@@ -281,10 +291,14 @@ namespace salary3Offices
             Datas datas = new Datas();
             datas.Currency = txbxCurrency.Text;
             datas.CurrencyHoliday = txbxCurrencyHolliday.Text;
+            datas.CurrencyHoliday2 = txbxCurrencyHolliday2.Text;
+            datas.CurrencyHoliday3 = txbxCurrencyHolliday3.Text;
             datas.CurrencyZP = txbxCurrencyZP.Text;
             datas.DateAvans = txbx_DateAvans.Text;
             datas.DateZp = txbxDateZP.Text;
             datas.DateHoliday = txbxDateHolliday.Text;
+            datas.DateHoliday2 = txbxDateHolliday2.Text;
+            datas.DateHoliday3 = txbxDateHolliday3.Text;
             datas.EmailText = emailText.Text;
             datas.FileFolder = fileFolder.Text;
             datas.Login = txbxLogin.Text;
@@ -328,7 +342,11 @@ namespace salary3Offices
             txbxCurrency.Text = datas.Currency;
             txbxCurrencyZP.Text = datas.CurrencyZP;
             txbxCurrencyHolliday.Text = datas.CurrencyHoliday;
+            txbxCurrencyHolliday2.Text = datas.CurrencyHoliday2;
+            txbxCurrencyHolliday3.Text = datas.CurrencyHoliday3;
             txbxDateHolliday.Text = datas.DateHoliday;
+            txbxDateHolliday2.Text = datas.DateHoliday2;
+            txbxDateHolliday3.Text = datas.DateHoliday3;
             txbxDateZP.Text = datas.DateZp;
             txbx_DateAvans.Text = datas.DateAvans;
             txbxLogin.Text = datas.Login;
