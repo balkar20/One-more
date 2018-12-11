@@ -311,7 +311,7 @@ namespace salary3Offices
                     string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
                     string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
                     string pattern3 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@mail.ru)";
-                    string pattern4 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+[@]+[a-zA-z0-9._])";
+                    //string pattern4 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+[@]+[a-zA-z0-9._])";
 
                     Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
                     MatchCollection matches = rgx.Matches(setting);
@@ -321,40 +321,45 @@ namespace salary3Offices
                     MatchCollection matches2 = rgx2.Matches(setting);
                     Regex rgx3 = new Regex(pattern3, RegexOptions.IgnoreCase);
                     MatchCollection matches3 = rgx3.Matches(setting);
-                    Regex rgx4 = new Regex(pattern4, RegexOptions.IgnoreCase);
-                    MatchCollection matches4 = rgx4.Matches(setting);
+                    //Regex rgx4 = new Regex(pattern4, RegexOptions.IgnoreCase);
+                    //MatchCollection matches4 = rgx4.Matches(setting);
                     Regex rgxFor2 = new Regex(patternForTwo, RegexOptions.IgnoreCase);
                     MatchCollection matchesFor2 = rgxFor2.Matches(setting);
                     if (matches.Count > 0)
                     {
                         GroupCollection groups = matches[0].Groups;
                         to.Add(groups[1].ToString(), groups[3].ToString());
+                        return;
                     }
-                    else if (matchesFor2.Count > 0)
+                    if (matchesFor2.Count > 0)
                     {
                         GroupCollection groups2 = matchesFor2[0].Groups;
                         to.Add(groups2[1].ToString(), groups2[3].ToString());
+                        return;
                     }
-                    else if (matches1.Count > 0)
+                    if (matches1.Count > 0)
                     {
                         GroupCollection groups = matches1[0].Groups;
                         to.Add(groups[1].ToString(), groups[3].ToString());
+                        return;
                     }
-                    else if (matches2.Count > 0)
+                    if (matches2.Count > 0)
                     {
                         GroupCollection groups = matches2[0].Groups;
                         to.Add(groups[1].ToString(), groups[3].ToString());
+                        return;
                     }
-                    else if (matches3.Count > 0)
+                    if (matches3.Count > 0)
                     {
                         GroupCollection groups = matches3[0].Groups;
                         to.Add(groups[1].ToString(), groups[3].ToString());
+                        return;
                     }
-                    else if (matches4.Count > 0)
-                    {
-                        GroupCollection groups = matches4[0].Groups;
-                        to.Add(groups[1].ToString(), groups[3].ToString());
-                    }
+                    //if (matches4.Count > 0)
+                    //{
+                    //    GroupCollection groups = matches4[0].Groups;
+                    //    to.Add(groups[1].ToString(), groups[3].ToString());
+                    //}
                 }
             }
         }
