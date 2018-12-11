@@ -286,80 +286,81 @@ namespace salary3Offices
 
         public static void ReadSettings(string settingfile)
         {
-            StreamReader reader = new StreamReader(settingfile, Encoding.Default);
-
-            string setting;
-
-            while ((setting = reader.ReadLine()) != null)
+            using (StreamReader reader = new StreamReader(settingfile, Encoding.Default))
             {
-                if (setting.StartsWith("FromEmail:"))
-                {
-                    from = setting.Replace("FromEmail:", string.Empty);
-                }
-                else if (setting.StartsWith("FromSignature:"))
-                {
-                    fromsign = setting.Replace("FromSignature:", string.Empty);
-                }
-                else if (setting.StartsWith("SMTP:"))
-                {
-                    smtphost = setting.Replace("SMTP:", string.Empty);
-                }
-                else
-                {
-                    string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@artezio.com)";
-                    string pattern = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z]+\.[a-zA-Z]+@artezio.com)";
-                    string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
-                    string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
-                    string pattern3 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@mail.ru)";
-                    //string pattern4 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+[@]+[a-zA-z0-9._])";
+                string setting;
 
-                    Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-                    MatchCollection matches = rgx.Matches(setting);
-                    Regex rgx1 = new Regex(pattern1, RegexOptions.IgnoreCase);
-                    MatchCollection matches1 = rgx1.Matches(setting);
-                    Regex rgx2 = new Regex(pattern2, RegexOptions.IgnoreCase);
-                    MatchCollection matches2 = rgx2.Matches(setting);
-                    Regex rgx3 = new Regex(pattern3, RegexOptions.IgnoreCase);
-                    MatchCollection matches3 = rgx3.Matches(setting);
-                    //Regex rgx4 = new Regex(pattern4, RegexOptions.IgnoreCase);
-                    //MatchCollection matches4 = rgx4.Matches(setting);
-                    Regex rgxFor2 = new Regex(patternForTwo, RegexOptions.IgnoreCase);
-                    MatchCollection matchesFor2 = rgxFor2.Matches(setting);
-                    if (matches.Count > 0)
+                while ((setting = reader.ReadLine()) != null)
+                {
+                    if (setting.StartsWith("FromEmail:"))
                     {
-                        GroupCollection groups = matches[0].Groups;
-                        to.Add(groups[1].ToString(), groups[3].ToString());
-                        return;
+                        @from = setting.Replace("FromEmail:", string.Empty);
                     }
-                    if (matchesFor2.Count > 0)
+                    else if (setting.StartsWith("FromSignature:"))
                     {
-                        GroupCollection groups2 = matchesFor2[0].Groups;
-                        to.Add(groups2[1].ToString(), groups2[3].ToString());
-                        return;
+                        fromsign = setting.Replace("FromSignature:", string.Empty);
                     }
-                    if (matches1.Count > 0)
+                    else if (setting.StartsWith("SMTP:"))
                     {
-                        GroupCollection groups = matches1[0].Groups;
-                        to.Add(groups[1].ToString(), groups[3].ToString());
-                        return;
+                        smtphost = setting.Replace("SMTP:", string.Empty);
                     }
-                    if (matches2.Count > 0)
+                    else
                     {
-                        GroupCollection groups = matches2[0].Groups;
-                        to.Add(groups[1].ToString(), groups[3].ToString());
-                        return;
+                        string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@artezio.com)";
+                        string pattern = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z]+\.[a-zA-Z]+@artezio.com)";
+                        string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
+                        string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
+                        string pattern3 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@mail.ru)";
+                        //string pattern4 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+[@]+[a-zA-z0-9._])";
+
+                        Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+                        MatchCollection matches = rgx.Matches(setting);
+                        Regex rgx1 = new Regex(pattern1, RegexOptions.IgnoreCase);
+                        MatchCollection matches1 = rgx1.Matches(setting);
+                        Regex rgx2 = new Regex(pattern2, RegexOptions.IgnoreCase);
+                        MatchCollection matches2 = rgx2.Matches(setting);
+                        Regex rgx3 = new Regex(pattern3, RegexOptions.IgnoreCase);
+                        MatchCollection matches3 = rgx3.Matches(setting);
+                        //Regex rgx4 = new Regex(pattern4, RegexOptions.IgnoreCase);
+                        //MatchCollection matches4 = rgx4.Matches(setting);
+                        Regex rgxFor2 = new Regex(patternForTwo, RegexOptions.IgnoreCase);
+                        MatchCollection matchesFor2 = rgxFor2.Matches(setting);
+                        if (matches.Count > 0)
+                        {
+                            GroupCollection groups = matches[0].Groups;
+                            to.Add(groups[1].ToString(), groups[3].ToString());
+                            return;
+                        }
+                        if (matchesFor2.Count > 0)
+                        {
+                            GroupCollection groups2 = matchesFor2[0].Groups;
+                            to.Add(groups2[1].ToString(), groups2[3].ToString());
+                            return;
+                        }
+                        if (matches1.Count > 0)
+                        {
+                            GroupCollection groups = matches1[0].Groups;
+                            to.Add(groups[1].ToString(), groups[3].ToString());
+                            return;
+                        }
+                        if (matches2.Count > 0)
+                        {
+                            GroupCollection groups = matches2[0].Groups;
+                            to.Add(groups[1].ToString(), groups[3].ToString());
+                            return;
+                        }
+                        if (matches3.Count > 0)
+                        {
+                            GroupCollection groups = matches3[0].Groups;
+                            to.Add(groups[1].ToString(), groups[3].ToString());
+                            return;
+                        }
+                        //if (matches4.Count > 0)
+                        //{
+                        //    GroupCollection groups = matches4[0].Groups;
+                        //    to.Add(groups[1].ToString(), groups[3].ToString());
+                        //}
                     }
-                    if (matches3.Count > 0)
-                    {
-                        GroupCollection groups = matches3[0].Groups;
-                        to.Add(groups[1].ToString(), groups[3].ToString());
-                        return;
-                    }
-                    //if (matches4.Count > 0)
-                    //{
-                    //    GroupCollection groups = matches4[0].Groups;
-                    //    to.Add(groups[1].ToString(), groups[3].ToString());
-                    //}
                 }
             }
         }
