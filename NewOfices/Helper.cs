@@ -8,8 +8,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-
 
 namespace salary3Offices
 {
