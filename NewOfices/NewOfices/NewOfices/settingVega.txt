@@ -1,8 +1,0 @@
-FromEmail:Vladislav.Balkarov@artezio.com
-FromSignature:Vladislav Balkarov
-SMTP:smtp.artgroup.local
-Николаенко Михаил Викторович:Vladislav.Balkarov@artezio.com
-Быков Геннадий Валерьевич:Svyataslav.Balkarov@artezio.com
-Балкарова Оксана Евгеньевна:Aleksandr.Balkarov@artezio.com
-Укропов Веньямин Аристархович:balkar20@mail.ru
-Панкратов Натан Петрович:balkar20@yandex.ru

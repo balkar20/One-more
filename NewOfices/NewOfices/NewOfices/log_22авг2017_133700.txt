@@ -1,2 +1,0 @@
-Ошибка при попытке отправить письмо для System.Collections.Generic.Dictionary`2[System.String,System.String]: Failure sending mail.
-Ошибка при попытке отправить письмо для System.Collections.Generic.Dictionary`2[System.String,System.String]: Failure sending mail.
