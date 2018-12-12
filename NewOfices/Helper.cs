@@ -253,15 +253,15 @@ namespace salary3Offices
                 }
                 if (curencyHolliday != "")
                 {
-                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString, curencyHolliday);
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfHollydayString, curencyHolliday);
                 }
                 if (curencyHolliday2 != "")
                 {
-                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString2, curencyHolliday2);
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfHollydayString2, curencyHolliday2);
                 }
                 if (curencyHolliday3 != "")
                 {
-                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN", dateOfHollydayString3, curencyHolliday3);
+                    mailBody.AppendFormat("Курс доллара США на {0}: {1} BYN" + "\n\r", dateOfHollydayString3, curencyHolliday3);
                 }
                 mailBody.Append(emailtext);
                 mailBody.Append(Environment.NewLine).Append(Environment.NewLine).Append("Kind regards,").Append(Environment.NewLine);
