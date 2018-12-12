@@ -231,7 +231,9 @@ namespace salary3Offices
                 openFileDialog.Filter = "Text Files (*.txt)|*.txt";
                 var result = openFileDialog.ShowDialog();
                 if (result == false) return;
-                settingsFolder.Text = openFileDialog.FileName;
+                string text = openFileDialog.FileName;
+                settingsFolder.Text = text;
+                Helper.ReadSettings(text);
             }
             catch (Exception exception)
             {

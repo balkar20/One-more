@@ -286,6 +286,7 @@ namespace salary3Offices
 
         public static void ReadSettings(string settingfile)
         {
+            to.Clear();
             using (StreamReader reader = new StreamReader(settingfile, Encoding.Default))
             {
                 string setting;
@@ -308,7 +309,7 @@ namespace salary3Offices
                     {
                         string patternForTwo = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@artezio.com)";
                         string pattern = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z]+\.[a-zA-Z]+@artezio.com)";
-                        string pattern1 = @"([a-zA-Z0-9._]+)(:)([a-zA-Z0-9._]+@gmail.com)";
+                        string pattern1 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@gmail.com)";
                         string pattern2 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@yandex.ru)";
                         string pattern3 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@mail.ru)";
                         string pattern4 = @"([a-zA-Z0-9._]+)(:)([a-zA-Z0-9._]+[@][a-zA-z0-9._]+)";
