@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using Microsoft.Office.Interop.Excel;
 using SalaryReport.Save;
 using Button = System.Windows.Controls.Button;
 using Window = System.Windows.Window;
@@ -87,6 +86,14 @@ namespace salary3Offices
                 else if (result.Input == "txbx_DateAvans")
                 {
                     txbxCurrency.Text = result.Currency;
+                }
+                else if (result.Input == "txbxDateHolliday2")
+                {
+                    txbxCurrencyHolliday2.Text = result.Currency;
+                }
+                else if (result.Input == "txbxDateHolliday3")
+                {
+                    txbxCurrencyHolliday3.Text = result.Currency;
                 }
             }
         }
@@ -451,7 +458,5 @@ namespace salary3Offices
                 }
             }
         }
-
-        
     }
 }
