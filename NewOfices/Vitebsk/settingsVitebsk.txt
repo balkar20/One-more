@@ -48,7 +48,7 @@ SMTP:SMTP.ARTGROUP.local
 Плешанов Сергей Владимирович:Siarhei.Pliashanau@artezio.com
 Рожанский Александр Владимирович:Aliaksandr.Razhanski@artezio.com
 Романовский Павел Геннадьевич:Pavel.Romanovsky@artezio.com
-Селезнев Павел Александрович:Pavel.Seleznev@artezio.com
+Селезнёв Павел Александрович:Pavel.Seleznev@artezio.com
 Семенов Александр Ефимович:Alexander.Semenov@artezio.com
 Шостачук Алексей Викторович:Alexey.Shostachuk@artezio.com
 Шпаков Вячеслав Владимирович:Viacheslav.Shpakov@artezio.com
@@ -68,3 +68,10 @@ SMTP:SMTP.ARTGROUP.local
 Гончарова Татьяна Михайловна:Tatsiana.Goncharova@artezio.com
 Шестаков Евгений Николаевич:Evgeny.Shestakov@artezio.com
 Соловьёва Анастасия Александровна:Anastasiya.Salauyova@artezio.com
+Булах Юрий Владимирович:Yury.Bulakh@artezio.com
+Воробьёв Павел Алексеевич:Pavel.Varabyou@artezio.com
+Раташнюк Роман Анатольевич:Roman.Ratashnuke@artezio.com
+Рябцев Владислав Сергеевич:Uladzislau.Rabtsau@artezio.com
+Талайко Павел Дмитриевич:Pavel.Talaika@artezio.com
+Щербаков Павел Александрович:Pavel.Shcharbakov@artezio.com
+Заведеева Татьяна Леонидовна:

@@ -85,6 +85,7 @@ SMTP:SMTP.ARTGROUP.local
 Рисовец Елена Викторовна:Helen.Risovets@artezio.com
 Ромашко Антон Васильевич:Anton.Romashko@artezio.com
 Рубахова Наталия Юрьевна:Nataliya.Rubahova@artezio.com
+Рубашко Елизавета Александровна:Elizabeth.Rubashko@artezio.com
 Рудько Алексей Семенович:Aliaksei.Rudzko@artezio.com
 Русак Виталий Викторович:Vitaly.Rusak@artezio.com
 Саржевский Дмитрий Игоревич:Dmitry.Sarzhevski@artezio.com
@@ -119,6 +120,7 @@ SMTP:SMTP.ARTGROUP.local
 Шолудько Людмила Николаевна:Ludmila.Sholudko@artezio.com
 Якшук Ирина Мечиславовна:Irina.Yakshuk@artezio.com
 Ященко Игорь Валерьевич:Igor.Yashchenko@artezio.com
+Яковенко Даниил Андреевич:Daniil.Yakovenko@artezio.com
 
 
 

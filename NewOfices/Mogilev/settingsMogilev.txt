@@ -42,7 +42,7 @@ SMTP:SMTP.ARTGROUP.local
 Кононова Татьяна Васильевна:Dmitry.Kononov@artezio.com
 Лавицкий Евгений Дмитриевич:Yauheni.Lavitski@artezio.com
 Цыганков Александр Анатольевич:Aliaksandr.Tsyhankou@artezio.com
-Савенкова Елена Геннадьевна:Alena.Saviankova@artezio.com
+Тишкевич Елена Геннадьевна:Alena.Tishkevich@artezio.com
 Якубов Сергей Викторович:Sergei.Yakubov@artezio.com
 Иголкина Александра Анатольевна:Aleksandra.Igolkina@artezio.com
 Образовская Анна Викторовна:Anna.Obrazovskaya@artezio.com
@@ -66,5 +66,12 @@ SMTP:SMTP.ARTGROUP.local
 Тапстов Александр Олегович:Aleksandr.Tapstov@artezio.com
 Фельдман Владимир Леонидович:volfelmog@gmail.com
 Якушева Виктория Геннадьевна:Victoria.Yakusheva@artezio.com
-Пядус Виталий Михайлович:Vitaly.Pyadus@artezio.com			
+Пядус Виталий Михайлович:Vitaly.Pyadus@artezio.com
+Саперский Андрей Михайлович:Andrei.Saperski@artezio.com	
+Лялькин Игорь Витальевич:Ihar.Lialkin@artezio.com
+Маликов Денис Александрович:Denis.Malikov@artezio.com
+Сироткин Константин Евгеньевич:Konstantin.Sirotkin@artezio.com
+Тапунов Александр Иванович:Alexandr.Tapunov@artezio.com
+
+		
 			
