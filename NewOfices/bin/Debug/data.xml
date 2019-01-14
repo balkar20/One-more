@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Datas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Login>abalkarov</Login>
+  <Password>ab15031972_6</Password>
+  <PathToCopy>D:\lists</PathToCopy>
+  <Currency />
+  <CurrencyZP />
+  <CurrencyHoliday>2.1329</CurrencyHoliday>
+  <CurrencyHoliday2 />
+  <CurrencyHoliday3 />
+  <DateHoliday>10.12.2018</DateHoliday>
+  <DateHoliday2 />
+  <DateHoliday3 />
+  <DateZp />
+  <DateAvans />
+  <FileFolder>D:\One-more\set\Copy of NewOfices.rar.xls</FileFolder>
+  <SettingsFolder>D:\One-more\set\settingsMogilev.txt</SettingsFolder>
+  <EmailText>Расчетные к выплате отпускных 10.12.2018 по графику отпусков с 12.12.2018</EmailText>
+</Datas>
