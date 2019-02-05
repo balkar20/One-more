@@ -88,8 +88,6 @@
             <TextBox Height="46" HorizontalAlignment="Left" Margin="9,166,0,0" Name="emailText" VerticalAlignment="Top" Width="465" Grid.ColumnSpan="2" />
             <Label Content="Дополнительный текст письма:" Height="30" HorizontalAlignment="Left" Margin="10,136,0,0" Name="emaillabel" VerticalAlignment="Top" Width="182" />
             <Button Content="Открыть папку с логами" Grid.Column="1" HorizontalAlignment="Left" Margin="223,328,0,0" VerticalAlignment="Top" Width="141" Height="23" Click="Button_Click"/>
-            <!--<DatePicker x:Name="txbxDateHolliday" CalendarClosed="SetCurrency" HorizontalAlignment="Left" Height="22" Margin="461,-98,0,0"  VerticalAlignment="Top" Width="103" RenderTransformOrigin="0.367,0.522" Grid.Column="1" />-->
-            <!--<TextBox x:Name="txbxCurrencyHolliday" HorizontalAlignment="Left" Height="22" Margin="611,-98,-3,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.519,-2.913" Grid.Column="1" />-->
         </Grid>
     </Grid>
 </Window>
