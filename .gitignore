@@ -2,3 +2,6 @@
 **/.vs/
 **/DesignTimeBuild/
 **/obj/
+/NewOfices/bin/Debug/*.xml
+/NewOfices/bin/Debug/*.exe
+/NewOfices/bin/Debug/*.pdb

@@ -420,6 +420,16 @@ namespace salary3Offices
                 txbxCurrencyHolliday.Text = "";
                 txbxDateHolliday.Text = "";
             }
+            else if (btnName == "btnClearHoliday2")
+            {
+                txbxCurrencyHolliday2.Text = "";
+                txbxDateHolliday2.Text = "";
+            }
+            else if (btnName == "btnClearHoliday3")
+            {
+                txbxCurrencyHolliday3.Text = "";
+                txbxDateHolliday3.Text = "";
+            }
         }
 
         // Проверяем есть ли в ОС программа, которая может открыть
