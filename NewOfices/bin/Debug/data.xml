@@ -1,19 +1,20 @@
 <?xml version="1.0"?>
 <Datas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Login>abalkarov</Login>
-  <Password>ab15031972_6</Password>
-  <PathToCopy>D:\lists</PathToCopy>
-  <Currency />
-  <CurrencyZP />
-  <CurrencyHoliday>2.1329</CurrencyHoliday>
-  <CurrencyHoliday2 />
-  <CurrencyHoliday3 />
-  <DateHoliday>10.12.2018</DateHoliday>
   <DateHoliday2 />
-  <DateHoliday3 />
-  <DateZp />
-  <DateAvans />
-  <FileFolder>D:\One-more\set\Copy of NewOfices.rar.xls</FileFolder>
-  <SettingsFolder>D:\One-more\set\settingsMogilev.txt</SettingsFolder>
-  <EmailText>Расчетные к выплате отпускных 10.12.2018 по графику отпусков с 12.12.2018</EmailText>
+  <Password>ab15031972_7</Password>
+  <PathToCopy>D:\Артезио\Расчетные листки\2019</PathToCopy>
+  <Currency>2.1527</Currency>
+  <CurrencyZP>2.1663</CurrencyZP>
+  <CurrencyHoliday>2.1204</CurrencyHoliday>
+  <CurrencyHoliday2>2.1255</CurrencyHoliday2>
+  <CurrencyHoliday3>2.1532</CurrencyHoliday3>
+  <DateHoliday>14.12.2018</DateHoliday>
+  <DateHoliday2>21.12.2018</DateHoliday2>
+  <DateHoliday3>11.01.2019</DateHoliday3>
+  <DateZp>08.02.2019</DateZp>
+  <DateAvans>25.01.2019</DateAvans>
+  <FileFolder>D:\Артезио\Расчетные листки\2019\Расчетные Январь Могилев.xls</FileFolder>
+  <SettingsFolder>D:\Артезио\One-more\NewOfices\Mogilev\settingsMogilev.txt</SettingsFolder>
+  <EmailText />
 </Datas>
