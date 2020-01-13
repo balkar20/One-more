@@ -294,8 +294,6 @@ namespace salary3Offices
 
                 while ((setting = reader.ReadLine()) != null)
                 {
-                    byte[] bytes = Encoding.Default.GetBytes(setting);
-                    setting = Encoding.UTF8.GetString(bytes);
                     if (setting.StartsWith("FromEmail:"))
                     {
                         @from = setting.Replace("FromEmail:", string.Empty);
