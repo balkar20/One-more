@@ -270,7 +270,8 @@ namespace salary3Offices
                 message.Subject = String.Format("Расчетный листок {0}", period);
                 smtp = new SmtpClient(smtphost);
                 smtp.Port = port;
-                smtp.UseDefaultCredentials = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = login;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 Logger.Out(String.Format(to[employeeFullName]));
                     smtp.Send(message);
