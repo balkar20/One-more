@@ -270,7 +270,8 @@ namespace salary3Offices
                 message.Subject = String.Format("Расчетный листок {0}", period);
                 smtp = new SmtpClient(smtphost);
                 smtp.Port = port;
-                smtp.UseDefaultCredentials = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = login;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 Logger.Out(String.Format(to[employeeFullName]));
                     smtp.Send(message);
@@ -293,6 +294,8 @@ namespace salary3Offices
 
                 while ((setting = reader.ReadLine()) != null)
                 {
+                    byte[] bytes = Encoding.Default.GetBytes(setting);
+                    setting = Encoding.UTF8.GetString(bytes);
                     if (setting.StartsWith("FromEmail:"))
                     {
                         @from = setting.Replace("FromEmail:", string.Empty);
@@ -314,9 +317,9 @@ namespace salary3Offices
                         string pattern3 = @"([а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+\s+[а-яА-ЯёЁ]+)(:)([a-zA-Z0-9._]+@mail.ru)";
                         string pattern4 = @"([a-zA-Z0-9._]+)(:)([a-zA-Z0-9._]+[@][a-zA-z0-9._]+)";
 
-                        Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+                        Regex rgx = new Regex(pattern, RegexOptions.CultureInvariant);
                         MatchCollection matches = rgx.Matches(setting);
-                        Regex rgx1 = new Regex(pattern1, RegexOptions.IgnoreCase);
+                        Regex rgx1 = new Regex(pattern1, RegexOptions.CultureInvariant);
                         MatchCollection matches1 = rgx1.Matches(setting);
                         Regex rgx2 = new Regex(pattern2, RegexOptions.IgnoreCase);
                         MatchCollection matches2 = rgx2.Matches(setting);

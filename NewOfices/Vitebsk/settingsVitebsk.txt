@@ -1,31 +1,33 @@
 FromEmail:Aleksandr.Balkarov@artezio.com
 FromSignature:Aleksandr Balkarov
 SMTP:SMTP.ARTGROUP.local
-Бондаренко Кирилл Сергеевич:Kirill.Bondarenko@artezio.com
-Барсуков Иван Юрьевич:Ivan.Barsukov@artezio.com
+Алексеев Владислав Дмитриевич:Uladzislau.Aliakseyeu@artezio.com
 Березовский Артём Александрович:Artem.Berezovski@artezio.com
-Белорусов Вадим Андреевич:Vadzim.Belarusau@artezio.com
-Бондаренко Александр Юрьевич:Alexander.Bondarenko@artezio.com
+Бондаренко Кирилл Сергеевич:Kirill.Bondarenko@artezio.com
+Бондаренко Максим Юрьевич:Maksim.Bandarenka@artezio.com
+Булах Юрий Владимирович:Yury.Bulakh@artezio.com
 Бураков Владимир Васильевич:Vladimir.Burakov@artezio.com
-Волощук Сергей Валерьевич:Sergey.Voloshchuk@artezio.com
+Вишняков Вячеслав Александрович:Viachaslau.Vishniakou@artezio.com
+Воробьёв Павел Алексеевич:Pavel.Varabyou@artezio.com
 Гайчук Игорь Владимирович:Ihar.Haichuk@artezio.com
-Чирков Сергей Сергеевич:Sergey.Chirkov@artezio.com
-Даниленко Дмитрий Александрович:Dmitry.Danilenko@artezio.com
-Докутович Николай Николаевич:Nikolai.Dokutovich@artezio.com
-Дрозник Владимир Александрович:Vladimir.Droznik@artezio.com
-Фёдоров Дмитрий Евгеньевич:Dmitry.Fedorov@artezio.com
 Герасимов Андрей Игоревич:Andrei.Gerasimov@artezio.com
+Глушнёнок Александр Сергеевич:Alexander.Hlushnionak@artezio.com
 Гончаров Дмитрий Владимирович:Dmitry.Goncharov@artezio.com
 Горбачёв Тимур Александрович:Timur.Gorbachiov@artezio.com
 Губчук Наталья Александровна:Natalya.Gubchuk@artezio.com
 Гусев Юрий Валерьевич:Gusev.Yuri@artezio.com
-Капцов Александр Сергеевич:Alexander.Kaptsov@artezio.com
-Хваль Сергей Константинович:Sergey.Khval@artezio.com
+Докутович Николай Николаевич:Nikolai.Dokutovich@artezio.com
+Дрозник Владимир Александрович:Vladimir.Droznik@artezio.com
+Иншакова Наталья Владимировна:Alexandr.Ustinov@artezio.com
+Зайцев Кирилл Сергеевич:Kirill.Zaytsev@artezio.com
+Замкович Евгения Юрьевна:Eugenia.Zamkovich@artezio.com
+Збуржинский Владимир Витальевич:Vladimir.Zburzhynski@artezio.com
+Зинченко Александр Александрович:Aliaksandr.Zinchanka@artezio.com
 Ковалев Максим Васильевич:Maksim.Kovalev@artezio.com
 Ковалевский Александр Геннадьевич:Aleksandr.Kovalevski@artezio.com
 Ковригович Максим Валерьевич:Maksim.Kovrigovich@artezio.com
-Колесник Максим Сергеевич:Maksim.Kalesnik@artezio.com
-Крапивной Александр Евгеньевич:Alexander.Krapivnoj@artezio.com
+Косаковская Наталья Александровна:Natalya.Kosakovskaya@artezio.com
+Котович Дмитрий Викторович:Dmitry.Kotovich@artezio.com
 Кулешов Игорь Александрович:Igor.Kuleshov@artezio.com
 Лапковский Кирилл Игоревич:Kirill.Lapkovskiy@artezio.com
 Лесовикова Анна Александровна:Anna.Lesovikova@artezio.com
@@ -35,43 +37,37 @@ SMTP:SMTP.ARTGROUP.local
 Марченко Владимир Викторович:Vladimir.Marchenko@artezio.com
 Мартынов Максим Андреевич:Maksim.Martynau@artezio.com
 Максимов Захар Михайлович:Zachar.Maximov@artezio.com
-Миклушов Артем Александрович:Artsiom.Miklushou@artezio.com
-Мясоедов Роман Юрьевич:Roman.Myasoedow@artezio.com
 Никитенко Антон Викторович:Anton.Nikitenko@artezio.com
 Овсянников Сергей Петрович:Sergey.Ovsjannikov@artezio.com
+Орлов Константин Юрьевич:Kanstantsin.Arlou@artezio.com
 Пеньков Вячеслав Игоревич:Viacheskav.Penkov@artezio.com
 Петюкевич Владислав Валентинович:Vladzislav.Petsiukevich@artezio.com
-Плетухин Василий Игоревич:Vasiliy.Pletuhin@artezio.com
-Подолякина Ольга Владимировна:Volha.Podolyakina@artezio.com
 Путов Михаил Сергеевич:Michael.Putov@artezio.com
 Пузыревская Валентина Генриховна:Valiantsina.Puzyreuskaya@artezio.com
-Плешанов Сергей Владимирович:Siarhei.Pliashanau@artezio.com
+Раташнюк Роман Анатольевич:Roman.Ratashnuke@artezio.com
 Рожанский Александр Владимирович:Aliaksandr.Razhanski@artezio.com
 Романовский Павел Геннадьевич:Pavel.Romanovsky@artezio.com
+Рябцев Владислав Сергеевич:Uladzislau.Rabtsau@artezio.com
 Селезнёв Павел Александрович:Pavel.Seleznev@artezio.com
-Семенов Александр Ефимович:Alexander.Semenov@artezio.com
+Середохов Павел Вячеславович:Pavel.Seredokhov@artezio.com
+Соловьёва Анастасия Александровна:Anastasiya.Salauyova@artezio.com
+Талайко Павел Дмитриевич:Pavel.Talaika@artezio.com
+Татаринов Вячеслав Петрович:Vyacheslav.Tatarinov@artezio.com
+Чирков Сергей Сергеевич:Sergey.Chirkov@artezio.com
+Шестаков Евгений Николаевич:Evgeny.Shestakov@artezio.com
 Шостачук Алексей Викторович:Alexey.Shostachuk@artezio.com
 Шпаков Вячеслав Владимирович:Viacheslav.Shpakov@artezio.com
-Скребнев Павел Юрьевич:Pavel.Skrebnev@artezio.com
-Татаринов Вячеслав Петрович:Vyacheslav.Tatarinov@artezio.com
-Устинов Александр Николаевич:Alexandr.Ustinov@artezio.com
-Вишняков Вячеслав Александрович:Viachaslau.Vishniakou@artezio.com
-Яковлев Павел Николаевич:Yakovlev.Pavel@artezio.com
-Юрченко Владислав Анатольевич:Uladzislau.Yurchanka@artezio.com
-Зайцев Кирилл Сергеевич:Kirill.Zaytsev@artezio.com
-Зайцев Руслан Игоревич:Ruslan.Zaytsev@artezio.com
-Збуржинский Владимир Витальевич:Vladimir.Zburzhynski@artezio.com
-Замкович Евгения Юрьевна:Nikolai.Dokutovich@artezio.com
-Зинченко Александр Александрович:Aliaksandr.Zinchanka@artezio.com
-Подвигина Любовь Юрьевна:Nikolai.Dokutovich@artezio.com
-Глушнёнок Александр Сергеевич:Alexander.Hlushnionak@artezio.com
-Гончарова Татьяна Михайловна:Tatsiana.Goncharova@artezio.com
-Шестаков Евгений Николаевич:Evgeny.Shestakov@artezio.com
-Соловьёва Анастасия Александровна:Anastasiya.Salauyova@artezio.com
-Булах Юрий Владимирович:Yury.Bulakh@artezio.com
-Воробьёв Павел Алексеевич:Pavel.Varabyou@artezio.com
-Раташнюк Роман Анатольевич:Roman.Ratashnuke@artezio.com
-Рябцев Владислав Сергеевич:Uladzislau.Rabtsau@artezio.com
-Талайко Павел Дмитриевич:Pavel.Talaika@artezio.com
+Шульгин Иван Владимирович:Ivan.Shulgin@artezio.com
 Щербаков Павел Александрович:Pavel.Shcharbakov@artezio.com
-Заведеева Татьяна Леонидовна:
+Устинов Александр Николаевич:Alexandr.Ustinov@artezio.com
+Яковлев Павел Николаевич:Yakovlev.Pavel@artezio.com
+
+
+
+
+
+
+
+
+
+
