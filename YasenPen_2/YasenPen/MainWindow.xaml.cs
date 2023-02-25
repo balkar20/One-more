@@ -238,9 +238,8 @@ namespace YasenPen
 
         private void btn_show_Click(object sender, RoutedEventArgs e)
         {
-            
+            string stringconn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + txbx_file.Text + ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
 
-            string stringconn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + txbx_file.Text + ";Extended Properties=\"Excel 8.0;HDR=Yes;\";";
             OleDbConnection conn = new OleDbConnection(stringconn);
             try
             {
